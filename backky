@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Canyon Pass Open House Process</title>
+  <style>
+    :root {
+      --navy:#004786;
+      --orange:#fcb231;
+      --ink:#222;
+      --muted:#59636e;
+      --bg:#f6f8fb;
+      --card:#ffffff;
+    }
+
+    * {margin:0; padding:0; box-sizing:border-box;}
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--ink);
+      background: url("IMG_8505.jpg") no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    main {
+      background-color: rgba(255,255,255,0.9);
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Canyon Pass Open House Process</h1>
+    <p>Complete Walkthrough & Application Guide</p>
+    <!-- your existing form and content go here -->
+  </main>
+</body>
+</html>
