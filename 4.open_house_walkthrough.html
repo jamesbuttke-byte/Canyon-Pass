@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Canyon Pass Open House Process</title>
+  <style>
+    :root{
+      --navy:#004786;
+      --navy-2:#0a5da8;
+      --orange:#fcb231;
+      --ink:#222;
+      --muted:#59636e;
+      --bg:#f6f8fb;
+      --card:#ffffff;
+      --line:#dbe3ec;
+      --success:#27ae60;
+      --warn-bg:#fff6e0;
+      --warn-border:#ffe199;
+      --warn-text:#715207;
+      --hero-image: url('https://upload.wikimedia.org/wikipedia/commons/2/2b/Saguaro_National_Park_Panorama.jpg');
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+
+    body{
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height:1.6;
+      color:var(--ink);
+      /* Tucson canyon background with subtle dark overlay for readability */
+      background-color: #8b7355;
+      background-image: 
+        linear-gradient(rgba(0,0,0,0.10), rgba(0,0,0,0.10)),
+        url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Saguaro_National_Park_Panorama.jpg/1280px-Saguaro_National_Park_Panorama.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      min-height:100vh;
+      padding:20px;
+    }
+
+    .container{
+      max-width:900px;
+      margin:0 auto;
+      background:var(--card);
+      border-radius:15px;
+      box-shadow:0 20px 40px rgba(0,0,0,.12);
+      overflow:hidden;
+    }
+
+    .header{
+      /* Hero header over the same Tucson image with stronger overlay */
+      background-color: var(--navy);
+      background-image:
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.35)),
+        url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Saguaro_National_Park_Panorama.jpg/1280px-Saguaro_National_Park_Panorama.jpg');
+      background-size: cover;
+      background-position: center 35%;
+      color:#fff;
+      padding:30px;
+      text-align:center;
+    }
+    .header h1{font-size:2.2em;margin-bottom:8px;font-weight:600}
+    .header p{color:#e8eff7}
+
+    .effective-date{
+      background:var(--orange);
+      color:#1b1b1b;
+      padding:8px 16px;
+      border-radius:999px;
+      display:inline-block;
+      font-size:.95em;
+      font-weight:700;
+      margin-top:12px;
+      box-shadow:0 2px 0 rgba(0,0,0,.08) inset;
+    }
+
+    .content{padding:40px}
+    .section{margin-bottom:40px}
+
+    .section h2{
+      color:var(--navy);
+      font-size:1.55em;
+      margin-bottom:20px;
+      padding-bottom:10px;
+      border-bottom:3px solid var(--orange);
+      letter-spacing:.2px;
+    }
+
+    .step{
+      background:var(--bg);
+      border-left:6px solid var(--navy);
+      padding:20px;
+      margin-bottom:20px;
+      border-radius:0 10px 10px 0;
+    }
+    .step h3{color:var(--navy);margin-bottom:12px;font-size:1.2em}
+
+    .requirements{list-style:none;padding-left:24px}
+    .requirements li{margin-bottom:10px;position:relative}
+    .requirements li::before{
+      content:"✓";
+      color:var(--success);
+      font-weight:800;
+      position:absolute;left:-24px;
+    }
+
+    .warning{
+      background:var(--warn-bg);
+      border:1px solid var(--warn-border);
+      color:var(--warn-text);
+      padding:15px;border-radius:8px;margin:20px 0;
+    }
+
+    .policy-box{
+      background:#f8fafc;
+      border:2px solid var(--line);
+      padding:25px;border-radius:10px;margin:20px 0;
+    }
+    .policy-box h3{color:var(--navy);margin-bottom:16px;font-size:1.25em}
+
+    .policy-list{counter-reset:policy-counter;list-style:none;padding-left:0}
+    .policy-list>li{
+      counter-increment:policy-counter;
+      margin-bottom:18px;position:relative;padding-left:32px
+    }
+    .policy-list>li::before{
+      content:counter(policy-counter) ".";
+      position:absolute;left:0;top:0;font-weight:800;color:var(--navy)
+    }
+    .policy-sublist{list-style:lower-alpha;margin:10px 0 10px 22px}
+    .policy-sublist li{margin-bottom:8px}
+
+    .form-section{
+      background:#eef3f9;
+      padding:30px;border-radius:12px;margin-top:30px;border:1px solid var(--line)
+    }
+
+    .form-group{margin-bottom:18px}
+    .form-group label{display:block;margin-bottom:8px;font-weight:700;color:var(--navy)}
+    .form-group input,
+    .form-group textarea,
+    .form-group select{
+      width:100%;padding:12px;
+      border:2px solid #d7deea;border-radius:8px;font-size:16px;
+      transition:border-color .2s, box-shadow .2s;background:#fff
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus{
+      outline:none;border-color:var(--navy);
+      box-shadow:0 0 0 3px rgba(0,71,134,.15)
+    }
+
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+
+    .checkbox-group{
+      background:#fffaf2;border:2px solid var(--orange);
+      padding:18px;border-radius:10px;margin:18px 0
+    }
+    .checkbox-group label{display:flex;align-items:flex-start;gap:10px;cursor:pointer}
+    .checkbox-group input[type="checkbox"]{width:auto;margin:2px 0 0;transform:scale(1.2)}
+
+    .submit-btn, .copy-btn {
+      background:var(--navy);
+      color:#fff;
+      padding:15px 30px;border:none;border-radius:10px;
+      font-size:16px;font-weight:800;letter-spacing:.3px;
+      cursor:pointer;transition:transform .15s, box-shadow .15s, opacity .15s;
+      width:100%;margin-top:20px
+    }
+    .submit-btn:hover, .copy-btn:hover {
+      transform:translateY(-2px);
+      box-shadow:0 10px 18px rgba(252,178,49,.35);
+    }
+    .submit-btn:disabled, .copy-btn:disabled {
+      background:#8aa1bb;cursor:not-allowed;transform:none;box-shadow:none;opacity:.75
+    }
+
+    .contact-info{
+      background:#e8f3ff;border:1px solid #c9defc;
+      padding:18px;border-radius:10px;text-align:center;margin:18px 0
+    }
+    .contact-info strong{color:var(--navy);font-size:1.05em}
+
+    .timeline{
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:15px;
+      background:#fafbfd;
+      border:1px solid var(--line);
+      padding:30px 20px;
+      border-radius:12px;
+      margin:20px 0;
+      position:relative;
+    }
+    .timeline-step{
+      text-align:center;
+      position:relative;
+      padding:10px;
+    }
+    .timeline-step::after{
+      content:"";
+      position:absolute;
+      right:-7px;
+      top:25px;
+      width:14px;
+      height:4px;
+      background:var(--orange);
+      border-radius:2px;
+      z-index:1;
+    }
+    .timeline-step:last-child::after{display:none}
+    .timeline-number{
+      background:var(--navy);
+      color:#fff;
+      border:3px solid var(--orange);
+      border-radius:50%;
+      width:50px;
+      height:50px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0 auto 15px;
+      font-weight:900;
+      font-size:1.3em;
+    }
+    .timeline-step strong{
+      display:block;
+      color:var(--ink);
+      font-size:1.05em;
+      margin-bottom:8px;
+      line-height:1.3;
+      min-height:44px;
+    }
+    .timeline-step span{
+      display:block;
+      color:var(--muted);
+      font-size:0.9em;
+      line-height:1.4;
+    }
+
+    a{color:var(--navy);text-decoration:underline}
+    @media (max-width:768px){
+      .form-row{grid-template-columns:1fr}
+      .timeline{flex-direction:column;gap:20px}
+      .timeline-step::after{
+        right:50%;top:100%;transform:translate(50%, 8px);
+        width:4px;height:24px
+      }
+      .timeline-step:last-child::after{display:none}
+    }
+
+    .email-output-container {
+      margin-top: 30px;
+      padding: 20px;
+      background: #f0f8ff;
+      border: 1px solid #cceeff;
+      border-radius: 12px;
+      display: none;
+    }
+
+    .email-output-container h3 {
+      color: var(--navy);
+      margin-bottom: 15px;
+      font-size: 1.3em;
+    }
+
+    #emailOutput {
+      width: 100%;
+      min-height: 200px;
+      padding: 15px;
+      border: 1px solid #d7deea;
+      border-radius: 8px;
+      font-size: 15px;
+      line-height: 1.8;
+      background: #ffffff;
+      resize: vertical;
+      font-family: monospace;
+    }
+
+    .copy-status {
+        margin-top: 10px;
+        text-align: center;
+        color: var(--success);
+        font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Canyon Pass Open House Process</h1>
+      <p>Complete Walkthrough & Application Guide</p>
+      <div class="effective-date">Effective August 7, 2025</div>
+    </div>
+
+    <div class="content">
+      <div class="section">
+        <h2>📋 Process Overview</h2>
+        <div class="timeline">
+          <div class="timeline-step">
+            <div class="timeline-number">1</div>
+            <strong>Submit Application</strong>
+            <span>3-5 business days before</span>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-number">2</div>
+            <strong>Get Approval</strong>
+            <span>Receive confirmation</span>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-number">3</div>
+            <strong>Conduct Open House</strong>
+            <span>Weekends only, 8AM-6PM</span>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-number">4</div>
+            <strong>Complete Process</strong>
+            <span>Return visitor tags</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>📜 Official Canyon Pass Open House Policy</h2>
+        <div class="policy-box">
+          <h3>Open House Policy</h3>
+          <p style="margin-bottom:18px">Open Houses are permitted within the Canyon Pass community provided they comply with the following requirements listed below:</p>
+
+          <ol class="policy-list">
+            <li>
+              Prior to scheduling an open house, the realtor must contact Yolanda Quiroz with Associa Arizona via email at <a href="mailto:Yolanda.quiroz@associaarizona.com">Yolanda.quiroz@associaarizona.com</a> and provide the following information with at least 3-5 business days in advance:
+              <ol class="policy-sublist">
+                <li>The address of the home being shown in the open house.</li>
+                <li>A map to the home being shown (base maps available from Associa Arizona or the gatehouse).</li>
+                <li>Written directions from the gate house (go ___ miles on Dove Canyon Pass, turn left on ...)</li>
+                <li>The date and times of the open house.</li>
+                <li>Contact phone number of the realtor for the day of the event.</li>
+              </ol>
+            </li>
+
+            <li>
+              Only one temporary, industry-standard open house sign is permitted at the property during an active showing. The sign may be displayed only while a realtor or their representative is on-site to show the property, and only between the hours of 8:00 a.m. and 6:00 p.m. on Saturdays and Sundays, except on the following major holidays:
+              <ol class="policy-sublist">
+                <li>New Year's Day</li>
+                <li>Easter Sunday</li>
+                <li>Memorial Day</li>
+                <li>Independence Day</li>
+                <li>Labor Day</li>
+                <li>Thanksgiving Day</li>
+                <li>Christmas Day.</li>
+              </ol>
+            </li>
+
+            <li>No more than three open houses shall be scheduled for a day and large scale coordinated open house events are not permitted. This requirement is not applicable to a home tour for licensed realtors.</li>
+            <li>Open house traffic should not impede the free flow of traffic within the community.</li>
+            <li>No more than three "directional" signs are permitted per property to guide potential buyers to the property. These signs may be displayed only while a realtor or their representative is on-site to show the property, and only between the hours of 8:00 a.m. and 6:00 p.m. on Saturdays and Sundays.</li>
+            <li>All open house signs must be placed on private property with the permission of the property owner. No open house signs are permitted on common property, including but not limited to, the community entrance, medians, and sidewalks.</li>
+            <li>Open house signs must be removed immediately following the conclusion of the open house.</li>
+            <li>All other marketing and advertising materials must comply with the community's governing documents and architectural guidelines.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>📝 Open House Request Form</h2>
+        <div class="form-section">
+          <form id="openHouseForm">
+            <div class="form-group">
+              <label for="realtorName">Realtor Name:</label>
+              <input type="text" id="realtorName" name="realtorName" required />
+            </div>
+
+            <div class="form-group">
+              <label for="realtorPhone">Realtor Phone Number:</label>
+              <input type="tel" id="realtorPhone" name="realtorPhone" required />
+            </div>
+
+            <div class="form-group">
+              <label for="propertyAddress">Property Address:</label>
+              <input type="text" id="propertyAddress" name="propertyAddress" placeholder="e.g., 1234 Canyon Pass Dr" required />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="openHouseDate">Open House Date:</label>
+                <input type="date" id="openHouseDate" name="openHouseDate" required />
+              </div>
+              <div class="form-group">
+                <label for="openHouseTime">Open House Time (e.g., 10:00 AM - 2:00 PM):</label>
+                <input type="text" id="openHouseTime" name="openHouseTime" placeholder="e.g., 10:00 AM - 2:00 PM" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="mapLink">Link to Map (Optional, if available):</label>
+              <input type="url" id="mapLink" name="mapLink" placeholder="e.g., Google Maps link" />
+            </div>
+
+            <div class="form-group">
+              <label for="directions">Written Directions from Gate House:</label>
+              <textarea id="directions" name="directions" rows="4" placeholder="e.g., Go 1.5 miles on Dove Canyon Pass, turn left on Eagle Way, house is 3rd on the right."></textarea>
+            </div>
+
+            <div class="checkbox-group">
+              <label>
+                <input type="checkbox" id="policyConfirm" name="policyConfirm" required />
+                I confirm I have read and agree to comply with the Canyon Pass Open House Policy.
+              </label>
+            </div>
+
+            <button type="submit" class="submit-btn" id="generateEmailBtn">Generate Email Content</button>
+          </form>
+
+          <div class="email-output-container" id="emailOutputContainer">
+            <h3>Generated Email Content:</h3>
+            <textarea id="emailOutput" readonly></textarea>
+            <button type="button" class="copy-btn" id="copyEmailBtn">Copy Email Content</button>
+            <div class="copy-status" id="copyStatus"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>📞 Important Contact Information</h2>
+        <div class="contact-info">
+          <strong>Yolanda Quiroz</strong><br />
+          Associa Arizona<br />
+          Email: <a href="mailto:Yolanda.quiroz@associaarizona.com">Yolanda.quiroz@associaarizona.com</a><br />
+          Please allow 3-5 business days for approval.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('openHouseForm');
+      const generateEmailButton = document.getElementById('generateEmailBtn');
+      const emailOutputContainer = document.getElementById('emailOutputContainer');
+      const emailOutput = document.getElementById('emailOutput');
+      const copyEmailButton = document.getElementById('copyEmailBtn');
+      const copyStatus = document.getElementById('copyStatus');
+
+      function generateEmailContent() {
+        const realtorName = document.getElementById('realtorName').value;
+        const realtorPhone = document.getElementById('realtorPhone').value;
+        const propertyAddress = document.getElementById('propertyAddress').value;
+        const openHouseDate = document.getElementById('openHouseDate').value;
+        const openHouseTime = document.getElementById('openHouseTime').value;
+        const mapLink = document.getElementById('mapLink').value;
+        const directions = document.getElementById('directions').value;
+        const policyConfirm = document.getElementById('policyConfirm').checked;
+
+        if (!policyConfirm) {
+          alert('Please confirm you have read and agree to the Open House Policy.');
+          return '';
+        }
+
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return '';
+        }
+
+        const formattedDate = new Date(openHouseDate).toLocaleDateString('en-US', {
+          weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+        });
+
+        let emailBody = `Dear Yolanda Quiroz,\n\n`;
+        emailBody += `I am writing to request approval for an upcoming open house at a property within Canyon Pass.\n\n`;
+        emailBody += `Here are the details:\n\n`;
+        emailBody += `Property Address: ${propertyAddress}\n`;
+        emailBody += `Open House Date: ${formattedDate}\n`;
+        emailBody += `Open House Time: ${openHouseTime}\n`;
+        emailBody += `Realtor Name: ${realtorName}\n`;
+        emailBody += `Realtor Contact Phone: ${realtorPhone}\n`;
+
+        if (mapLink) {
+          emailBody += `Link to Map: ${mapLink}\n`;
+        } else {
+          emailBody += `Map: (No map link provided, please advise if one is required for approval)\n`;
+        }
+
+        emailBody += `Written Directions from Gate House: ${directions}\n\n`;
+        emailBody += `I have read and agree to comply with the Canyon Pass Open House Policy.\n\n`;
+        emailBody += `Please let me know if any further information is needed or if this request is approved.\n\n`;
+        emailBody += `Thank you,\n${realtorName}`;
+
+        return emailBody;
+      }
+
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const generatedText = generateEmailContent();
+        if (generatedText) {
+          emailOutput.value = generatedText;
+          emailOutputContainer.style.display = 'block';
+          emailOutput.focus();
+          emailOutput.select();
+        } else {
+          emailOutputContainer.style.display = 'none';
+        }
+      });
+
+      copyEmailButton.addEventListener('click', function() {
+        emailOutput.select();
+        try {
+          const successful = document.execCommand('copy');
+          const msg = successful ? 'Copied to clipboard!' : 'Failed to copy.';
+          copyStatus.textContent = msg;
+          copyStatus.style.color = successful ? 'var(--success)' : 'var(--warn-text)';
+          setTimeout(() => {
+            copyStatus.textContent = '';
+          }, 3000);
+        } catch (err) {
+          console.error('Oops, unable to copy', err);
+          copyStatus.textContent = 'Copying not supported by your browser.';
+          copyStatus.style.color = 'var(--warn-text)';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
