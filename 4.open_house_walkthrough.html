@@ -18,51 +18,52 @@
       --warn-bg:#fff6e0;
       --warn-border:#ffe199;
       --warn-text:#715207;
-      --hero-image: url('https://upload.wikimedia.org/wikipedia/commons/2/2b/Saguaro_National_Park_Panorama.jpg');
+
+      /* Fallback hero image, gets overridden by body style below */
+      --hero-image: url('IMG_8505.jpeg');
     }
 
     *{margin:0;padding:0;box-sizing:border-box}
 
+    /* Page skin: calm desert tones instead of a busy photo */
     body{
       font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       line-height:1.6;
       color:var(--ink);
-      /* Tucson canyon background with subtle dark overlay for readability */
-      background-color: #8b7355;
-      background-image: 
-        linear-gradient(rgba(0,0,0,0.10), rgba(0,0,0,0.10)),
-        url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Saguaro_National_Park_Panorama.jpg/1280px-Saguaro_National_Park_Panorama.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
+      background:
+        radial-gradient(1200px 600px at 50% -10%, #907b5d 0%, #7b684f 35%, #6a5945 60%, #5b4d3c 100%);
       min-height:100vh;
-      padding:20px;
+      padding:24px;
     }
 
     .container{
-      max-width:900px;
+      max-width:980px;
       margin:0 auto;
       background:var(--card);
-      border-radius:15px;
-      box-shadow:0 20px 40px rgba(0,0,0,.12);
+      border-radius:16px;
+      box-shadow:0 24px 50px rgba(0,0,0,.18);
       overflow:hidden;
+      outline:1px solid rgba(0,0,0,.06);
     }
 
+    /* Hero header with your Tucson canyon image */
     .header{
-      /* Hero header over the same Tucson image with stronger overlay */
-      background-color: var(--navy);
-      background-image:
-        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.35)),
-        url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Saguaro_National_Park_Panorama.jpg/1280px-Saguaro_National_Park_Panorama.jpg');
-      background-size: cover;
-      background-position: center 35%;
+      position:relative;
       color:#fff;
-      padding:30px;
       text-align:center;
+      min-height:200px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      padding:34px 24px;
+      background-image:
+        linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.25)),
+        var(--hero-image);
+      background-size:cover;
+      background-position:center 35%;
     }
-    .header h1{font-size:2.2em;margin-bottom:8px;font-weight:600}
-    .header p{color:#e8eff7}
+    .header h1{font-size:2.2rem;margin-bottom:8px;font-weight:700;letter-spacing:.2px}
+    .header p{color:#e9f1fa}
 
     .effective-date{
       background:var(--orange);
@@ -71,21 +72,22 @@
       border-radius:999px;
       display:inline-block;
       font-size:.95em;
-      font-weight:700;
-      margin-top:12px;
+      font-weight:800;
+      margin-top:14px;
       box-shadow:0 2px 0 rgba(0,0,0,.08) inset;
     }
 
-    .content{padding:40px}
+    .content{padding:40px 36px}
     .section{margin-bottom:40px}
 
     .section h2{
       color:var(--navy);
       font-size:1.55em;
-      margin-bottom:20px;
+      margin-bottom:18px;
       padding-bottom:10px;
       border-bottom:3px solid var(--orange);
       letter-spacing:.2px;
+      display:flex;align-items:center;gap:8px
     }
 
     .step{
@@ -116,7 +118,8 @@
     .policy-box{
       background:#f8fafc;
       border:2px solid var(--line);
-      padding:25px;border-radius:10px;margin:20px 0;
+      padding:25px;border-radius:12px;margin:20px 0;
+      box-shadow:0 1px 0 rgba(0,0,0,.03);
     }
     .policy-box h3{color:var(--navy);margin-bottom:16px;font-size:1.25em}
 
@@ -184,13 +187,14 @@
     }
     .contact-info strong{color:var(--navy);font-size:1.05em}
 
+    /* Process timeline */
     .timeline{
       display:grid;
       grid-template-columns:repeat(4, 1fr);
-      gap:15px;
+      gap:16px;
       background:#fafbfd;
       border:1px solid var(--line);
-      padding:30px 20px;
+      padding:26px 18px;
       border-radius:12px;
       margin:20px 0;
       position:relative;
@@ -217,34 +221,26 @@
       color:#fff;
       border:3px solid var(--orange);
       border-radius:50%;
-      width:50px;
-      height:50px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      margin:0 auto 15px;
-      font-weight:900;
-      font-size:1.3em;
+      width:50px;height:50px;
+      display:flex;align-items:center;justify-content:center;
+      margin:0 auto 12px;
+      font-weight:900;font-size:1.25rem;
     }
     .timeline-step strong{
-      display:block;
-      color:var(--ink);
-      font-size:1.05em;
-      margin-bottom:8px;
-      line-height:1.3;
-      min-height:44px;
+      display:block;color:var(--ink);
+      font-size:1.03em;margin-bottom:6px;line-height:1.3;min-height:44px;
     }
     .timeline-step span{
-      display:block;
-      color:var(--muted);
-      font-size:0.9em;
-      line-height:1.4;
+      display:block;color:var(--muted);font-size:.92em;line-height:1.4;
     }
 
     a{color:var(--navy);text-decoration:underline}
+
     @media (max-width:768px){
+      body{padding:16px}
+      .content{padding:28px 20px}
       .form-row{grid-template-columns:1fr}
-      .timeline{flex-direction:column;gap:20px}
+      .timeline{grid-template-columns:1fr;gap:20px}
       .timeline-step::after{
         right:50%;top:100%;transform:translate(50%, 8px);
         width:4px;height:24px
@@ -252,6 +248,7 @@
       .timeline-step:last-child::after{display:none}
     }
 
+    /* Generated email output */
     .email-output-container {
       margin-top: 30px;
       padding: 20px;
@@ -260,13 +257,11 @@
       border-radius: 12px;
       display: none;
     }
-
     .email-output-container h3 {
       color: var(--navy);
       margin-bottom: 15px;
       font-size: 1.3em;
     }
-
     #emailOutput {
       width: 100%;
       min-height: 200px;
@@ -279,16 +274,17 @@
       resize: vertical;
       font-family: monospace;
     }
-
     .copy-status {
-        margin-top: 10px;
-        text-align: center;
-        color: var(--success);
-        font-weight: bold;
+      margin-top: 10px;
+      text-align: center;
+      color: var(--success);
+      font-weight: bold;
     }
   </style>
 </head>
-<body>
+
+<!-- Override the hero image here if needed -->
+<body style="--hero-image:url('IMG_8505.jpeg')">
   <div class="container">
     <div class="header">
       <h1>Canyon Pass Open House Process</h1>
@@ -415,9 +411,12 @@
           </form>
 
           <div class="email-output-container" id="emailOutputContainer">
-            <h3>Generated Email Content:</h3>
+            <h3>📧 Generated Email Content:</h3>
             <textarea id="emailOutput" readonly></textarea>
-            <button type="button" class="copy-btn" id="copyEmailBtn">Copy Email Content</button>
+            <div style="display:flex;gap:10px;margin-top:10px">
+              <button type="button" class="copy-btn" id="openEmailBtn" style="background:var(--orange);color:#1b1b1b;flex:1">Open in Email Client</button>
+              <button type="button" class="copy-btn" id="copyEmailBtn" style="flex:1">Copy to Clipboard</button>
+            </div>
             <div class="copy-status" id="copyStatus"></div>
           </div>
         </div>
@@ -441,8 +440,11 @@
       const generateEmailButton = document.getElementById('generateEmailBtn');
       const emailOutputContainer = document.getElementById('emailOutputContainer');
       const emailOutput = document.getElementById('emailOutput');
+      const openEmailButton = document.getElementById('openEmailBtn');
       const copyEmailButton = document.getElementById('copyEmailBtn');
       const copyStatus = document.getElementById('copyStatus');
+
+      let currentEmailData = null;
 
       function generateEmailContent() {
         const realtorName = document.getElementById('realtorName').value;
@@ -456,12 +458,12 @@
 
         if (!policyConfirm) {
           alert('Please confirm you have read and agree to the Open House Policy.');
-          return '';
+          return null;
         }
 
         if (!form.checkValidity()) {
           form.reportValidity();
-          return '';
+          return null;
         }
 
         const formattedDate = new Date(openHouseDate).toLocaleDateString('en-US', {
@@ -488,21 +490,42 @@
         emailBody += `Please let me know if any further information is needed or if this request is approved.\n\n`;
         emailBody += `Thank you,\n${realtorName}`;
 
-        return emailBody;
+        return {
+          body: emailBody,
+          subject: `Canyon Pass | Open House Request | ${propertyAddress} | ${formattedDate}`,
+          address: propertyAddress,
+          date: formattedDate
+        };
       }
 
       form.addEventListener('submit', function(event) {
         event.preventDefault();
 
-        const generatedText = generateEmailContent();
-        if (generatedText) {
-          emailOutput.value = generatedText;
+        const emailData = generateEmailContent();
+        if (emailData) {
+          currentEmailData = emailData;
+          emailOutput.value = emailData.body;
           emailOutputContainer.style.display = 'block';
           emailOutput.focus();
           emailOutput.select();
         } else {
           emailOutputContainer.style.display = 'none';
         }
+      });
+
+      openEmailButton.addEventListener('click', function() {
+        if (!currentEmailData) return;
+
+        const recipient = 'Yolanda.quiroz@associaarizona.com';
+        const subject = encodeURIComponent(currentEmailData.subject);
+        const body = encodeURIComponent(currentEmailData.body);
+
+        const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${body}`;
+        window.location.href = mailtoLink;
+
+        copyStatus.textContent = 'Opening your email client...';
+        copyStatus.style.color = 'var(--success)';
+        setTimeout(() => { copyStatus.textContent = ''; }, 3000);
       });
 
       copyEmailButton.addEventListener('click', function() {
@@ -512,9 +535,7 @@
           const msg = successful ? 'Copied to clipboard!' : 'Failed to copy.';
           copyStatus.textContent = msg;
           copyStatus.style.color = successful ? 'var(--success)' : 'var(--warn-text)';
-          setTimeout(() => {
-            copyStatus.textContent = '';
-          }, 3000);
+          setTimeout(() => { copyStatus.textContent = ''; }, 3000);
         } catch (err) {
           console.error('Oops, unable to copy', err);
           copyStatus.textContent = 'Copying not supported by your browser.';
