@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Canyon Pass Open House Process</title>
+
+  <style>
+    :root {
+      --navy: #004786;
+      --orange: #fcb231;
+      --ink: #222222;
+      --muted: #59636e;
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --line: #dbe3ec;
+      --success: #27ae60;
+      --warn-bg: #fff6e0;
+      --warn-border: #ffe199;
+      --warn-text: #715207;
+
+      --surface-bg: rgba(255, 255, 255, 0.94);
+      --surface-border: rgba(15, 23, 42, 0.08);
+      --shadow-color: rgba(0, 0, 0, 0.2);
+      --header-gradient: linear-gradient(rgba(0, 71, 134, 0.8), rgba(0, 71, 134, 0.6));
+      --panel-bg: #fafbfd;
+      --link-color: #004786;
+      --link-hover: #0a5da8;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #e5e7eb;
+        --muted: #9ca3af;
+        --bg: #020617;
+        --card: #0f172a;
+        --line: rgba(148, 163, 184, 0.7);
+
+        --surface-bg: rgba(15, 23, 42, 0.9);
+        --surface-border: rgba(148, 163, 184, 0.7);
+        --shadow-color: rgba(0, 0, 0, 0.7);
+        --header-gradient: linear-gradient(rgba(15, 23, 42, 0.96), rgba(30, 64, 175, 0.9));
+        --panel-bg: rgba(15, 23, 42, 0.9);
+        --link-color: #bfdbfe;
+        --link-hover: #e5e7eb;
+      }
+
+      body {
+        color: var(--ink);
+      }
+
+      .policy-box,
+      .form-section {
+        border-color: var(--surface-border);
+      }
+
+      .timeline {
+        background: var(--panel-bg);
+        border-color: var(--surface-border);
+      }
+
+      .contact-info {
+        background: rgba(30, 64, 175, 0.18);
+        border-color: var(--surface-border);
+      }
+
+      .email-output-container {
+        background: rgba(15, 23, 42, 0.95);
+        border-color: var(--surface-border);
+      }
+
+      textarea#emailOutput {
+        background: #020617;
+        color: var(--ink);
+      }
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--ink);
+      background: url("IMG_8505.jpg") no-repeat center center fixed;
+      background-size: cover;
+      background-attachment: fixed;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 960px;
+      background: var(--surface-bg);
+      border-radius: 16px;
+      box-shadow: 0 8px 30px var(--shadow-color);
+      border: 1px solid var(--surface-border);
+      overflow: hidden;
+      backdrop-filter: blur(6px);
+    }
+
+    .header {
+      text-align: center;
+      padding: 50px 20px;
+      background: var(--header-gradient);
+      color: #ffffff;
+    }
+
+    .header h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      color: #e9f1fa;
+    }
+
+    .effective-date {
+      margin-top: 15px;
+      background: var(--orange);
+      color: #222222;
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-weight: bold;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .content {
+      padding: 40px;
+    }
+
+    h2.section-title {
+      color: var(--navy);
+      border-bottom: 3px solid var(--orange);
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      font-size: 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      background: var(--panel-bg);
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      margin-bottom: 40px;
+    }
+
+    .timeline-step {
+      text-align: center;
+    }
+
+    .timeline-number {
+      background: var(--navy);
+      color: #ffffff;
+      border: 3px solid var(--orange);
+      border-radius: 50%;
+      width: 55px;
+      height: 55px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 10px;
+      font-weight: 900;
+      font-size: 1.2rem;
+    }
+
+    .timeline-step strong {
+      display: block;
+      font-size: 1.05em;
+      color: var(--ink);
+    }
+
+    .timeline-step span {
+      color: var(--muted);
+      font-size: 0.9em;
+    }
+
+    .policy-box {
+      background: var(--bg);
+      border: 2px solid var(--line);
+      padding: 25px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+    }
+
+    .policy-box h3 {
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+
+    .policy-box p {
+      margin-bottom: 14px;
+    }
+
+    .policy-list {
+      counter-reset: section;
+      padding-left: 20px;
+    }
+
+    .policy-list li {
+      counter-increment: section;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .policy-list li::before {
+      content: counter(section) ".";
+      position: absolute;
+      left: -20px;
+      color: var(--navy);
+      font-weight: bold;
+    }
+
+    .form-section {
+      background: #eef3f9;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 40px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: 600;
+      color: var(--navy);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 2px solid #d7deea;
+      font-size: 15px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+      background-color: #ffffff;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--navy);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 71, 134, 0.15);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .checkbox-group {
+      margin: 18px 0;
+      background: #fffaf2;
+      border: 2px solid var(--orange);
+      padding: 14px;
+      border-radius: 10px;
+    }
+
+    .checkbox-group label {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      margin-top: 3px;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    button {
+      background: var(--navy);
+      color: #ffffff;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      flex: 1 1 160px;
+      transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.1s ease;
+    }
+
+    button.primary {
+      background: var(--navy);
+    }
+
+    button.secondary {
+      background: var(--orange);
+      color: #222222;
+    }
+
+    button:hover {
+      background: var(--link-hover);
+      color: #ffffff;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+    }
+
+    button.secondary:hover {
+      background: #ffb341;
+      color: #222222;
+    }
+
+    .email-output-container {
+      display: none;
+      background: #f0f8ff;
+      border: 1px solid #cceeff;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 25px;
+    }
+
+    .email-output-container h3 {
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    textarea#emailOutput {
+      width: 100%;
+      min-height: 200px;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #d7deea;
+      font-family: monospace;
+      font-size: 14px;
+      resize: vertical;
+      background: #ffffff;
+    }
+
+    .copy-status {
+      margin-top: 10px;
+      text-align: center;
+      font-weight: bold;
+      color: var(--success);
+      min-height: 1.2em;
+    }
+
+    .contact-info {
+      text-align: center;
+      background: #e8f3ff;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #c9defc;
+    }
+
+    .contact-info strong {
+      font-size: 1.05rem;
+      color: var(--navy);
+    }
+
+    a {
+      color: var(--link-color);
+      text-decoration: underline;
+    }
+
+    a:hover {
+      color: var(--link-hover);
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 20px;
+      }
+
+      .content {
+        padding: 25px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .header {
+        padding: 36px 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Canyon Pass Open House Process</h1>
+      <p>Complete walkthrough and application guide</p>
+      <div class="effective-date">Effective August 7, 2025</div>
+    </header>
+
+    <main class="content">
+      <section class="section">
+        <h2 class="section-title">📋 Process Overview</h2>
+        <div class="timeline">
+          <div class="timeline-step">
+            <div class="timeline-number">1</div>
+            <strong>Submit application</strong>
+            <span>Submit 3 to 5 business days in advance</span>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-number">2</div>
+            <strong>Receive approval</strong>
+            <span>Confirmation sent by management</span>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-number">3</div>
+            <strong>Hold open house</strong>
+            <span>Weekends only, 8 AM to 6 PM</span>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-number">4</div>
+            <strong>Close out</strong>
+            <span>Remove signage and return visitor materials</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">📜 Official Policy</h2>
+        <div class="policy-box">
+          <h3>Open House Policy</h3>
+          <p>
+            Open houses are permitted within Canyon Pass when the following requirements are met.
+          </p>
+          <ol class="policy-list">
+            <li>
+              Submit a request to
+              <a href="mailto:Yolanda.quiroz@associaarizona.com">Yolanda.quiroz@associaarizona.com</a>
+              with the property address, map or directions, open house date and time, and day-of contact phone number
+              at least 3 to 5 business days before the event.
+            </li>
+            <li>
+              One temporary industry standard open house sign is allowed at the property while the realtor or
+              representative is on site. Signs may be displayed only between 8 AM and 6 PM on Saturdays and Sundays.
+            </li>
+            <li>
+              Up to three directional signs are allowed per property to guide visitors. These must be placed only with
+              the permission of the property owner.
+            </li>
+            <li>
+              Signs may not be placed on community common areas including entrances, medians, or sidewalks.
+            </li>
+            <li>
+              All signs and related materials must be removed immediately after the open house concludes.
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">📝 Open House Request Form</h2>
+        <div class="form-section">
+          <form id="openHouseForm" novalidate>
+            <div class="form-group">
+              <label for="realtorName">Realtor name</label>
+              <input type="text" id="realtorName" required />
+            </div>
+
+            <div class="form-group">
+              <label for="realtorPhone">Realtor phone number</label>
+              <input type="tel" id="realtorPhone" required />
+            </div>
+
+            <div class="form-group">
+              <label for="propertyAddress">Property address</label>
+              <input
+                type="text"
+                id="propertyAddress"
+                placeholder="Example: 1234 Canyon Pass Drive"
+                required
+              />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="openHouseDate">Open house date</label>
+                <input type="date" id="openHouseDate" required />
+              </div>
+              <div class="form-group">
+                <label for="openHouseTime">Open house time</label>
+                <input
+                  type="text"
+                  id="openHouseTime"
+                  placeholder="Example: 10:00 AM to 2:00 PM"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="mapLink">Map link (optional)</label>
+              <input
+                type="url"
+                id="mapLink"
+                placeholder="Example: Google Maps URL"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="directions">Directions from gatehouse</label>
+              <textarea
+                id="directions"
+                rows="3"
+                placeholder="Example: Go 1.5 miles on Dove Canyon Pass, turn left on Eagle Way, third home on the right."
+              ></textarea>
+            </div>
+
+            <div class="checkbox-group">
+              <label>
+                <input type="checkbox" id="policyConfirm" required />
+                I confirm that I have read and agree to comply with the Canyon Pass Open House Policy.
+              </label>
+            </div>
+
+            <button type="submit" id="generateEmailBtn" class="primary">
+              Generate email content
+            </button>
+          </form>
+
+          <div class="email-output-container" id="emailOutputContainer">
+            <h3>📧 Generated email content</h3>
+            <textarea id="emailOutput" readonly></textarea>
+
+            <div class="button-row">
+              <button type="button" id="openEmailBtn" class="secondary">
+                Open in email client
+              </button>
+              <button type="button" id="copyEmailBtn" class="primary">
+                Copy to clipboard
+              </button>
+            </div>
+
+            <div class="copy-status" id="copyStatus"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">📞 Contact</h2>
+        <div class="contact-info">
+          <strong>Yolanda Quiroz</strong><br />
+          Associa Arizona<br />
+          Email:
+          <a href="mailto:Yolanda.quiroz@associaarizona.com">
+            Yolanda.quiroz@associaarizona.com
+          </a>
+          <br />
+          Please allow 3 to 5 business days for approval.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      const form = document.getElementById("openHouseForm");
+      const emailOutputContainer = document.getElementById("emailOutputContainer");
+      const emailOutput = document.getElementById("emailOutput");
+      const copyButton = document.getElementById("copyEmailBtn");
+      const openEmailButton = document.getElementById("openEmailBtn");
+      const copyStatus = document.getElementById("copyStatus");
+
+      let currentEmailData = null;
+
+      function formatDate(dateString) {
+        if (!dateString) return "N/A";
+        const date = new Date(dateString + "T00:00:00");
+        if (isNaN(date.getTime())) return dateString;
+        return date.toLocaleDateString("en-US", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric"
+        });
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const policyConfirm = document.getElementById("policyConfirm");
+        if (!policyConfirm.checked) {
+          alert("Please confirm that you have read and agree to the Open House Policy.");
+          return;
+        }
+
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        const name = document.getElementById("realtorName").value.trim();
+        const phone = document.getElementById("realtorPhone").value.trim();
+        const address = document.getElementById("propertyAddress").value.trim();
+        const dateValue = document.getElementById("openHouseDate").value;
+        const time = document.getElementById("openHouseTime").value.trim();
+        const map = document.getElementById("mapLink").value.trim();
+        const directions = document
+          .getElementById("directions")
+          .value.trim();
+
+        const formattedDate = formatDate(dateValue);
+        const mapText = map || "No map link provided. Please advise if one is required.";
+        const directionsText = directions || "Directions not provided.";
+
+        let body = "Dear Yolanda Quiroz,\n\n";
+        body += "I am requesting approval for an open house within Canyon Pass.\n\n";
+        body += "Property address: " + address + "\n";
+        body += "Open house date: " + formattedDate + "\n";
+        body += "Open house time: " + time + "\n";
+        body += "Realtor name: " + name + "\n";
+        body += "Realtor phone: " + phone + "\n";
+        body += "Map link: " + mapText + "\n";
+        body += "Directions from gatehouse: " + directionsText + "\n\n";
+        body += "I confirm that I have read and agree to comply with the Canyon Pass Open House Policy.\n\n";
+        body += "Please let me know if any additional information is needed or if this request is approved.\n\n";
+        body += "Thank you,\n";
+        body += name;
+
+        const subject =
+          "Canyon Pass open house request | " + address + " | " + formattedDate;
+
+        currentEmailData = { subject, body };
+
+        emailOutput.value = body;
+        emailOutputContainer.style.display = "block";
+        copyStatus.textContent = "";
+      });
+
+      copyButton.addEventListener("click", function () {
+        if (!emailOutput.value) return;
+
+        emailOutput.select();
+        emailOutput.setSelectionRange(0, emailOutput.value.length);
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard
+            .writeText(emailOutput.value)
+            .then(function () {
+              copyStatus.textContent = "Copied to clipboard.";
+            })
+            .catch(function () {
+              document.execCommand("copy");
+              copyStatus.textContent = "Copied to clipboard.";
+            });
+        } else {
+          document.execCommand("copy");
+          copyStatus.textContent = "Copied to clipboard.";
+        }
+      });
+
+      openEmailButton.addEventListener("click", function () {
+        if (!currentEmailData) return;
+
+        const recipient = "Yolanda.quiroz@associaarizona.com";
+        const subject = encodeURIComponent(currentEmailData.subject);
+        const body = encodeURIComponent(currentEmailData.body);
+
+        const mailtoLink = "mailto:" + recipient + "?subject=" + subject + "&body=" + body;
+        window.location.href = mailtoLink;
+
+        copyStatus.textContent = "Opening your email client.";
+      });
+    })();
+  </script>
+</body>
+</html>
