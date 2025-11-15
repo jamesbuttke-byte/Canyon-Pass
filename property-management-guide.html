@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Management Business Launch Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #03224C 0%, #001B3A 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease;
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #DD550C 0%, #F26522 100%);
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+
+        .nav-container {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 15px;
+        }
+
+        .nav-tab {
+            padding: 12px 24px;
+            background: white;
+            border: 2px solid #DD550C;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: #03224C;
+            font-size: 0.95em;
+        }
+
+        .nav-tab:hover {
+            background: #DD550C;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(221, 85, 12, 0.3);
+        }
+
+        .nav-tab.active {
+            background: #DD550C;
+            color: white;
+            box-shadow: 0 4px 12px rgba(221, 85, 12, 0.4);
+            border-color: #DD550C;
+        }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 50px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            animation: fadeIn 0.6s ease;
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section h2 {
+            color: #03224C;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #DD550C;
+            padding-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .step-container {
+            margin: 30px 0;
+        }
+
+        .step {
+            background: #F8F9FA;
+            border-left: 4px solid #DD550C;
+            padding: 20px 25px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .step:hover {
+            background: #FFF5F0;
+            box-shadow: 0 2px 8px rgba(221, 85, 12, 0.15);
+            transform: translateX(5px);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background: #DD550C;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 36px;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.1em;
+        }
+
+        .step-title {
+            font-size: 1.3em;
+            color: #03224C;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+
+        .step-content {
+            margin-left: 51px;
+            margin-top: 15px;
+            display: none;
+            animation: slideDown 0.3s ease;
+            padding-top: 15px;
+            border-top: 1px solid #E9ECEF;
+            color: #495057;
+            line-height: 1.7;
+        }
+
+        .step.expanded .step-content {
+            display: block;
+        }
+
+        .step.expanded {
+            background: white;
+            border-left-color: #03224C;
+            box-shadow: 0 4px 12px rgba(3, 34, 76, 0.1);
+        }
+
+        .step::after {
+            content: '▼';
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #DD550C;
+            font-size: 0.8em;
+            transition: transform 0.3s ease;
+        }
+
+        .step.expanded::after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .cost-calculator {
+            background: linear-gradient(135deg, #03224C 0%, #001B3A 100%);
+            color: white;
+            padding: 35px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+
+        .cost-table {
+            width: 100%;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .cost-table th {
+            background: #DD550C;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .cost-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            color: #333;
+        }
+
+        .cost-table tr:hover {
+            background: #f5f7fa;
+        }
+
+        .package-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .package-card {
+            background: white;
+            border: 2px solid #E9ECEF;
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .package-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #DD550C;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .package-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 28px rgba(221, 85, 12, 0.2);
+            border-color: #DD550C;
+        }
+
+        .package-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .package-card h3 {
+            color: #03224C;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .package-card .price {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #DD550C;
+            margin: 20px 0;
+        }
+
+        .package-card ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .package-card li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .package-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #DD550C;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .state-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .state-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-top: 4px solid #DD550C;
+        }
+
+        .state-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(221, 85, 12, 0.15);
+        }
+
+        .state-card h3 {
+            color: #03224C;
+            font-size: 2em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .state-card .requirement {
+            background: #F8F9FA;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 3px solid #DD550C;
+        }
+
+        .interactive-checklist {
+            background: #FAFAFA;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            border: 1px solid #E9ECEF;
+        }
+
+        .checklist-item {
+            background: white;
+            padding: 18px;
+            margin: 12px 0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #E9ECEF;
+        }
+
+        .checklist-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 2px 8px rgba(221, 85, 12, 0.1);
+            border-color: #DD550C;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 25px;
+            height: 25px;
+            margin-right: 20px;
+            cursor: pointer;
+            accent-color: #DD550C;
+        }
+
+        .checklist-item.checked {
+            opacity: 0.6;
+            text-decoration: line-through;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            color: #DD550C;
+            cursor: help;
+            font-weight: bold;
+        }
+
+        .tooltip:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            white-space: nowrap;
+            z-index: 1000;
+            font-size: 0.9em;
+            font-weight: normal;
+        }
+
+        .pricing-calculator {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            margin: 30px 0;
+            border-top: 4px solid #DD550C;
+        }
+
+        .calculator-input {
+            margin: 20px 0;
+        }
+
+        .calculator-input label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #03224C;
+        }
+
+        .calculator-input input,
+        .calculator-input select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #E9ECEF;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .calculator-input input:focus,
+        .calculator-input select:focus {
+            outline: none;
+            border-color: #DD550C;
+        }
+
+        .calculator-result {
+            background: linear-gradient(135deg, #DD550C 0%, #C04A0A 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .calculator-result h3 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        .calculator-result .amount {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                max-height: 0;
+            }
+            to {
+                opacity: 1;
+                max-height: 1000px;
+            }
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #FFE5D9 0%, #FFC8A8 100%);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #03224C;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #DD550C;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin: 10px;
+        }
+
+        .cta-button:hover {
+            background: #C04A0A;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(221, 85, 12, 0.3);
+        }
+
+        .info-box {
+            background: #E8F4F8;
+            border-left: 4px solid #0277BD;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .warning-box {
+            background: #FFF8E1;
+            border-left: 4px solid #F57C00;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .success-box {
+            background: #E8F5E9;
+            border-left: 4px solid #2E7D32;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .subtitle {
+                font-size: 1.2em;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .package-cards,
+            .state-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+            }
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #DD550C;
+        }
+
+        .timeline-item {
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 45%;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: 55%;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: 55%;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+                margin-right: 0 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <header>
+        <h1>🏢 Property Management Business Launch Guide</h1>
+        <p class="subtitle">Your Complete Roadmap to Success in Arizona, Texas & Alabama</p>
+    </header>
+
+    <div class="nav-container">
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-section="launch-plan">📋 Launch Plan</div>
+            <div class="nav-tab" data-section="costs">💰 Startup Costs</div>
+            <div class="nav-tab" data-section="packages">📦 Service Packages</div>
+            <div class="nav-tab" data-section="pricing">💵 Pricing Strategy</div>
+            <div class="nav-tab" data-section="licensing">📜 Licensing & Legal</div>
+            <div class="nav-tab" data-section="checklist">✅ Action Checklist</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- LAUNCH PLAN SECTION -->
+        <div class="section active" id="launch-plan">
+            <h2>Step-by-Step Launch Plan</h2>
+            
+            <div class="info-box">
+                <strong>💡 Pro Tip:</strong> Click on any step to expand and see detailed information. Follow each phase sequentially for best results!
+            </div>
+
+            <h3 style="color: #03224C; margin: 40px 0 20px 0; font-size: 2em;">Phase A: Planning & Setup</h3>
+            
+            <div class="step-container">
+                <div class="step" onclick="toggleStep(this)">
+                    <div>
+                        <span class="step-number">1</span>
+                        <span class="step-title">Define Your Niche & Services</span>
+                    </div>
+                    <div class="step-content">
+                        <p><strong>Property Types to Consider:</strong></p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Single-family homes</li>
+                            <li>Multi-family units</li>
+                            <li>Short-term vacation rentals</li>
+                            <li>Commercial properties</li>
+                            <li>Mixed-use developments</li>
+                        </ul>
+                        <p style="margin-top: 15px;"><strong>Define Your Value Proposition:</strong></p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>⚡ Faster maintenance response</li>
+                            <li>📞 24/7 emergency service</li>
+                            <li>🎯 Superior tenant screening</li>
+                            <li>📈 Higher occupancy rates</li>
+                            <li>🔄 Lower turnover</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step" onclick="toggleStep(this)">
+                    <div>
+                        <span class="step-number">2</span>
+                        <span class="step-title">Market Research & Competition Analysis</span>
+                    </div>
+                    <div class="step-content">
+                        <p><strong>Research Checklist:</strong></p>
+                        <div class="info-box" style="margin-top: 15px;">
+                            <ul style="margin-left: 20px;">
+                                <li>Survey local market: typical fees, services offered, vacancy rates</li>
+                                <li>Identify 3-5 direct competitors</li>
+                                <li>Review their websites, pricing, and customer reviews</li>
+                                <li>Identify gaps you can fill (poor communication, slow response, lack of technology)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step" onclick="toggleStep(this)">
+                    <div>
+                        <span class="step-number">3</span>
+                        <span class="step-title">Business Formation & Branding</span>
+                    </div>
+                    <div class="step-content">
+                        <p><strong>Essential Setup Tasks:</strong></p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Choose business structure (LLC recommended for liability protection)</li>
+                            <li>Register business with state</li>
+                            <li>Secure business name, logo, and website domain</li>
+                            <li>Set up professional email and business phone</li>
+                            <li>Establish bookkeeping/accounting system</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step" onclick="toggleStep(this)">
+                    <div>
+                        <span class="step-number">4</span>
+                        <span class="step-title">Legal, Licensing & Insurance Setup</span>
+                    </div>
+                    <div class="step-content">
+                        <div class="warning-box">
+                            <strong>⚠️ Critical:</strong> This step is legally required in most states. See the Licensing & Legal section for state-specific requirements.
+                        </div>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Research and obtain required licenses</li>
+                            <li>Create contract templates (management agreements, leases, vendor agreements)</li>
+                            <li>Secure insurance: general liability, E&O, property manager liability</li>
+                            <li>Set up trust/escrow accounts for rent and security deposits</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step" onclick="toggleStep(this)">
+                    <div>
+                        <span class="step-number">5</span>
+                        <span class="step-title">Operations & Infrastructure</span>
+                    </div>
+                    <div class="step-content">
+                        <p><strong>Technology & Systems:</strong></p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Choose property management software (rent collection, maintenance tracking, reporting)</li>
+                            <li>Build vendor network (plumbers, electricians, HVAC, painters, cleaners)</li>
+                            <li>Document standard operating procedures</li>
+                            <li>Create marketing plan (website, social media, networking, referrals)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: #DD550C; margin: 40px 0 20px 0; font-size: 2em;">Phase B: Go-Live & Ramp-Up</h3>
+
+            <div class="step-container">
+                <div class="step" onclick="toggleStep(this)">
+                    <div>
+                        <span class="step-number">6</span>
+                        <span class="step-title">Acquire First Clients</span>
+                    </div>
+                    <div class="step-content">
+                        <p><strong>Client Acquisition Strategies:</strong></p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Attend local real estate investor meetups</li>
+                            <li>Join landlord associations</li>
+                            <li>Offer launch incentives (discounted rates for first 3 months)</li>
+                            <li>Request referrals and testimonials from satisfied clients</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step" onclick="toggleStep(this)">
+                    <div>
+                        <span class="step-number">7</span>
+                        <span class="step-title">Manage Risk from the Start</span>
+                    </div>
+                    <div class="step-content">
+                        <div class="success-box">
+                            <strong>✓ Best Practice:</strong> Always have signed agreements before starting work!
+                        </div>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Ensure every property has a signed management agreement</li>
+                            <li>Keep lease agreements updated and legally compliant</li>
+                            <li>Conduct property walkthroughs with owners</li>
+                            <li>Document property conditions with photos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step" onclick="toggleStep(this)">
+                    <div>
+                        <span class="step-number">8</span>
+                        <span class="step-title">Establish Reporting & Feedback Loops</span>
+                    </div>
+                    <div class="step-content">
+                        <p><strong>Regular Reporting:</strong></p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Create owner reports: occupancy, income/expense, maintenance logs</li>
+                            <li>Set up tenant feedback processes</li>
+                            <li>Schedule property inspections</li>
+                            <li>Implement preventive maintenance schedules</li>
+                            <li>Review and optimize vendor performance</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step" onclick="toggleStep(this)">
+                    <div>
+                        <span class="step-number">9</span>
+                        <span class="step-title">Scale & Optimize</span>
+                    </div>
+                    <div class="step-content">
+                        <p><strong>Growth Strategies:</strong></p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Refine pricing and services based on experience</li>
+                            <li>Hire assistance as needed (assistant property managers)</li>
+                            <li>Delegate routine tasks (screening, maintenance coordination)</li>
+                            <li>Expand geography or property types</li>
+                            <li>Consider premium service tiers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step" onclick="toggleStep(this)">
+                    <div>
+                        <span class="step-number">10</span>
+                        <span class="step-title">Continuous Improvement</span>
+                    </div>
+                    <div class="step-content">
+                        <p><strong>Key Performance Indicators to Monitor:</strong></p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>📊 Occupancy rate</li>
+                            <li>⏱️ Turnover time</li>
+                            <li>💰 Maintenance cost per unit</li>
+                            <li>😊 Owner satisfaction scores</li>
+                            <li>⭐ Online reviews and ratings</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STARTUP COSTS SECTION -->
+        <div class="section" id="costs">
+            <h2>Estimating Startup Costs</h2>
+            
+            <div class="info-box">
+                <strong>💡 Note:</strong> These are ballpark estimates for Marana, Arizona and surrounding areas. Adjust based on your specific market and scale.
+            </div>
+
+            <div class="cost-calculator">
+                <h3 style="margin-bottom: 20px;">Startup Cost Breakdown</h3>
+                <table class="cost-table">
+                    <thead>
+                        <tr>
+                            <th>Cost Category</th>
+                            <th>Low Estimate</th>
+                            <th>High Estimate</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Business Registration & Licensing</strong></td>
+                            <td>$500</td>
+                            <td>$2,000</td>
+                            <td>State registration, real estate license fees</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Real Estate License / Broker Sponsorship</strong></td>
+                            <td>$300</td>
+                            <td>$2,000+</td>
+                            <td>Varies by state and current license status</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Insurance (General Liability, E&O)</strong></td>
+                            <td>$500/year</td>
+                            <td>$2,000/year</td>
+                            <td>Based on portfolio size and coverage needs</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Property Management Software</strong></td>
+                            <td>$50/month</td>
+                            <td>$300/month</td>
+                            <td>Annual cost: $600 - $3,600</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Website & Branding</strong></td>
+                            <td>$500</td>
+                            <td>$5,000</td>
+                            <td>Domain, hosting, design, logo, marketing materials</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Office Equipment / Remote Setup</strong></td>
+                            <td>$500</td>
+                            <td>$3,000</td>
+                            <td>Laptop, phone, furniture (lower if home-based)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Marketing & Lead Generation</strong></td>
+                            <td>$500</td>
+                            <td>$5,000</td>
+                            <td>Events, listings, signage, ads</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contingency Fund</strong></td>
+                            <td>$2,000</td>
+                            <td>$10,000</td>
+                            <td>Cover expenses before profitability</td>
+                        </tr>
+                        <tr style="background: #667eea; color: white; font-weight: bold;">
+                            <td>TOTAL STARTUP COST (Low End)</td>
+                            <td colspan="3">~$4,850</td>
+                        </tr>
+                        <tr style="background: #764ba2; color: white; font-weight: bold;">
+                            <td>TOTAL STARTUP COST (High End)</td>
+                            <td colspan="3">~$32,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="success-box" style="margin-top: 30px;">
+                <h3>Key Cost Drivers to Consider:</h3>
+                <ul style="margin-left: 20px; margin-top: 15px;">
+                    <li><strong>Your licensing status:</strong> Already licensed vs. need to obtain license</li>
+                    <li><strong>Technology stack:</strong> More automation = higher upfront cost but better scalability</li>
+                    <li><strong>Marketing approach:</strong> Word-of-mouth vs. paid advertising</li>
+                    <li><strong>Initial portfolio size:</strong> Managing 1-2 units vs. 20+ units from start</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SERVICE PACKAGES SECTION -->
+        <div class="section" id="packages">
+            <h2>Service Packages</h2>
+            
+            <div class="info-box">
+                <strong>💡 Strategy:</strong> Offering tiered packages allows clients to choose based on their needs while maximizing your revenue potential.
+            </div>
+
+            <div class="package-cards">
+                <div class="package-card">
+                    <h3>🥉 Basic Package</h3>
+                    <p style="color: #666; font-style: italic;">"Essential"</p>
+                    <div class="price">8-10%</div>
+                    <p style="text-align: center; color: #666;">of monthly rent</p>
+                    
+                    <ul>
+                        <li>Marketing & listing of vacant units</li>
+                        <li>Tenant screening (credit, background, eviction)</li>
+                        <li>Lease preparation & execution</li>
+                        <li>Monthly rent collection</li>
+                        <li>Monthly owner statements</li>
+                    </ul>
+                    
+                    <div class="warning-box" style="margin-top: 20px;">
+                        Owner retains maintenance responsibility (coordinated case-by-case)
+                    </div>
+                </div>
+
+                <div class="package-card">
+                    <h3>🥈 Standard Package</h3>
+                    <p style="color: #666; font-style: italic;">"Full-Service"</p>
+                    <div class="price">10-12%</div>
+                    <p style="text-align: center; color: #666;">of monthly rent + setup fee</p>
+                    
+                    <ul>
+                        <li>All Basic package services</li>
+                        <li>Routine maintenance coordination</li>
+                        <li>Quarterly property inspections</li>
+                        <li>Lease renewal negotiations</li>
+                        <li>Eviction coordination (owner pays costs)</li>
+                        <li>Vendor management & billing</li>
+                    </ul>
+                    
+                    <div class="success-box" style="margin-top: 20px;">
+                        <strong>Most Popular!</strong> Best value for busy landlords
+                    </div>
+                </div>
+
+                <div class="package-card">
+                    <h3>🥇 Premium Package</h3>
+                    <p style="color: #666; font-style: italic;">"Hands-Off Investor Deluxe"</p>
+                    <div class="price">12-15%</div>
+                    <p style="text-align: center; color: #666;">of monthly rent + leasing fee</p>
+                    
+                    <ul>
+                        <li>All Standard package services</li>
+                        <li>24/7 emergency tenant hotline</li>
+                        <li>Preventive maintenance planning</li>
+                        <li>Budget forecasting & trust fund review</li>
+                        <li>Owner portal with real-time updates</li>
+                        <li>Monthly detailed reports + annual asset review</li>
+                        <li>Leasing fee: 50-100% of one month's rent</li>
+                    </ul>
+                    
+                    <div class="info-box" style="margin-top: 20px;">
+                        Perfect for out-of-state or completely passive investors
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 50px 0 30px 0; color: #03224C; font-size: 2em;">Additional Service Options</h3>
+            
+            <div class="step-container">
+                <div class="step">
+                    <div style="padding: 10px 0;">
+                        <strong style="font-size: 1.2em;">🎯 Tenant Placement Only</strong>
+                        <p style="margin-top: 10px; color: #666;">One-time fee of 75% of one month's rent. Perfect for owners who only need help finding quality tenants.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div style="padding: 10px 0;">
+                        <strong style="font-size: 1.2em;">🔧 Maintenance Oversight Only</strong>
+                        <p style="margin-top: 10px; color: #666;">Monthly flat fee + markup on vendor invoices. For owners who handle leasing but need maintenance help.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div style="padding: 10px 0;">
+                        <strong style="font-size: 1.2em;">🏖️ Short-Term Rental Management</strong>
+                        <p style="margin-top: 10px; color: #666;">15-25% of gross rent. Higher percentage due to housekeeping, guest turnover, and booking platform management.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="success-box" style="margin-top: 40px;">
+                <h3>Tips for Structuring Your Packages:</h3>
+                <ul style="margin-left: 20px; margin-top: 15px;">
+                    <li>✓ Clearly spell out what's included and excluded in each package</li>
+                    <li>✓ Define termination rights and notification requirements</li>
+                    <li>✓ Make pricing transparent and easy to compare</li>
+                    <li>✓ Consider minimum monthly fees for low-rent units ($150 baseline)</li>
+                    <li>✓ Include annual rate review clauses (tied to CPI or local rent growth)</li>
+                    <li>✓ Document service level expectations (response times, communication frequency)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- PRICING STRATEGY SECTION -->
+        <div class="section" id="pricing">
+            <h2>Setting Your Pricing Strategy</h2>
+            
+            <div class="info-box">
+                <strong>💡 Goal:</strong> Be competitive while ensuring you cover costs and maintain healthy profit margins.
+            </div>
+
+            <h3 style="color: #03224C; margin: 40px 0 20px 0; font-size: 1.8em;">Key Pricing Factors</h3>
+            
+            <div class="package-cards">
+                <div class="package-card">
+                    <h3>📍 Location & Property Type</h3>
+                    <p>High-value areas and larger multi-unit buildings can command higher fees.</p>
+                </div>
+
+                <div class="package-card">
+                    <h3>💵 Rent Amount</h3>
+                    <p>Typically a percentage of monthly rent, so higher rent = higher fee.</p>
+                </div>
+
+                <div class="package-card">
+                    <h3>🎯 Service Level</h3>
+                    <p>More comprehensive packages justify higher percentage fees.</p>
+                </div>
+
+                <div class="package-card">
+                    <h3>📊 Portfolio Size</h3>
+                    <p>Larger portfolios may get discounts due to economies of scale.</p>
+                </div>
+
+                <div class="package-card">
+                    <h3>🔧 Property Condition</h3>
+                    <p>High-maintenance or older properties may warrant premium pricing.</p>
+                </div>
+
+                <div class="package-card">
+                    <h3>➕ Additional Services</h3>
+                    <p>Leasing fees, evictions, and STR services add to base pricing.</p>
+                </div>
+            </div>
+
+            <h3 style="color: #DD550C; margin: 50px 0 30px 0; font-size: 1.8em;">Typical Pricing Models</h3>
+
+            <div class="step-container">
+                <div class="step" onclick="toggleStep(this)">
+                    <div>
+                        <span class="step-number">%</span>
+                        <span class="step-title">Percentage of Monthly Rent</span>
+                    </div>
+                    <div class="step-content">
+                        <p><strong>Range:</strong> 8-15% of monthly rent depending on services</p>
+                        <p style="margin-top: 10px;"><strong>When to use:</strong> Most common for ongoing management. Scales with property value.</p>
+                    </div>
+                </div>
+
+                <div class="step" onclick="toggleStep(this)">
+                    <div>
+                        <span class="step-number">🏠</span>
+                        <span class="step-title">Leasing/Placement Fee</span>
+                    </div>
+                    <div class="step-content">
+                        <p><strong>Range:</strong> 50-100% of one month's rent</p>
+                        <p style="margin-top: 10px;"><strong>When to use:</strong> One-time fee when placing a new tenant. Compensates for marketing, showings, screening.</p>
+                    </div>
+                </div>
+
+                <div class="step" onclick="toggleStep(this)">
+                    <div>
+                        <span class="step-number">💲</span>
+                        <span class="step-title">Flat Monthly Fee</span>
+                    </div>
+                    <div class="step-content">
+                        <p><strong>Range:</strong> Fixed amount per property (e.g., $150-$300)</p>
+                        <p style="margin-top: 10px;"><strong>When to use:</strong> Low-rent units or fixed-scope services where percentage doesn't make sense.</p>
+                    </div>
+                </div>
+
+                <div class="step" onclick="toggleStep(this)">
+                    <div>
+                        <span class="step-number">+</span>
+                        <span class="step-title">Markup on Vendor Invoices</span>
+                    </div>
+                    <div class="step-content">
+                        <p><strong>Range:</strong> 5-10% markup on maintenance costs</p>
+                        <p style="margin-top: 10px;"><strong>When to use:</strong> Coordination fee for managing vendors and maintenance.</p>
+                    </div>
+                </div>
+
+                <div class="step" onclick="toggleStep(this)">
+                    <div>
+                        <span class="step-number">📏</span>
+                        <span class="step-title">Minimum Fee</span>
+                    </div>
+                    <div class="step-content">
+                        <p><strong>Range:</strong> $125-$150/month floor</p>
+                        <p style="margin-top: 10px;"><strong>When to use:</strong> Ensures you cover overhead even for very low-rent properties.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pricing-calculator">
+                <h3 style="color: white; margin-bottom: 30px;">💰 Pricing Calculator</h3>
+                
+                <div class="calculator-input">
+                    <label>Average Monthly Rent per Property:</label>
+                    <input type="number" id="avgRent" value="1800" min="0" step="50">
+                </div>
+
+                <div class="calculator-input">
+                    <label>Package Type:</label>
+                    <select id="packageType">
+                        <option value="0.08">Basic (8%)</option>
+                        <option value="0.11" selected>Standard (11%)</option>
+                        <option value="0.14">Premium (14%)</option>
+                    </select>
+                </div>
+
+                <div class="calculator-input">
+                    <label>Number of Properties:</label>
+                    <input type="number" id="numProperties" value="20" min="1" step="1">
+                </div>
+
+                <button class="cta-button" onclick="calculateRevenue()">Calculate Monthly Revenue</button>
+
+                <div class="calculator-result" id="calculatorResult" style="display: none;">
+                    <h3>Monthly Revenue</h3>
+                    <div class="amount" id="monthlyRevenue">$0</div>
+                    <p id="annualRevenue"></p>
+                    <p id="perProperty"></p>
+                </div>
+            </div>
+
+            <h3 style="color: #03224C; margin: 50px 0 30px 0; font-size: 1.8em;">Example: Marana, AZ Market</h3>
+            
+            <div class="cost-calculator">
+                <h4 style="margin-bottom: 20px;">Assuming $1,800/month average rent for single-family home:</h4>
+                <table class="cost-table">
+                    <thead>
+                        <tr>
+                            <th>Package</th>
+                            <th>Fee %</th>
+                            <th>Monthly Fee per Property</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Basic</strong></td>
+                            <td>8%</td>
+                            <td>$144</td>
+                            <td>Essential services only</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Standard</strong></td>
+                            <td>11%</td>
+                            <td>$198</td>
+                            <td>Full-service management</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Premium</strong></td>
+                            <td>14%</td>
+                            <td>$252</td>
+                            <td>+ leasing fee (~$1,350)</td>
+                        </tr>
+                        <tr style="background: #f5f7fa;">
+                            <td colspan="4"><strong>For lower-rent units (< $1,000):</strong> Set minimum fee of $125-$150/month</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="success-box" style="margin-top: 40px;">
+                <h3>Cost & Profit Check Example (20 properties @ Standard package):</h3>
+                <ul style="margin-left: 20px; margin-top: 15px; line-height: 1.8;">
+                    <li><strong>Monthly Revenue:</strong> 20 units × $198 = $3,960</li>
+                    <li><strong>Fixed Costs:</strong> Software ($200) + Insurance ($150) + Office ($100) + Marketing ($200) = $650</li>
+                    <li><strong>Variable Costs:</strong> ~$100/unit × 20 = $2,000</li>
+                    <li><strong>Monthly Profit:</strong> $3,960 - $650 - $2,000 = <span class="highlight">$1,310</span></li>
+                    <li><strong>Annual Profit:</strong> <span class="highlight">$15,720</span> (before scaling up!)</li>
+                </ul>
+            </div>
+
+            <div class="info-box" style="margin-top: 30px;">
+                <h3>📅 Rate Review & Adjustment:</h3>
+                <ul style="margin-left: 20px; margin-top: 15px;">
+                    <li>Review rates annually or when expanding services</li>
+                    <li>Consider adding premium tiers or upsells</li>
+                    <li>Monitor competitor pricing and local rent trends</li>
+                    <li>Tie rate increases to CPI or local market growth</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- LICENSING & LEGAL SECTION -->
+        <div class="section" id="licensing">
+            <h2>Legal & Licensing Requirements</h2>
+            
+            <div class="warning-box">
+                <strong>⚠️ Important Legal Disclaimer:</strong> This is general information, not legal advice. Always consult your state licensing body or legal counsel for your specific situation.
+            </div>
+
+            <div class="state-cards">
+                <div class="state-card">
+                    <h3>🌵 Arizona</h3>
+                    
+                    <div class="requirement">
+                        <strong>Licensing Authority:</strong> Arizona Department of Real Estate (ADRE)
+                    </div>
+
+                    <div class="requirement">
+                        <strong>License Required:</strong> Real estate broker or salesperson license needed if managing rental properties for others (collecting rent, negotiating leases, overseeing maintenance)
+                    </div>
+
+                    <div class="requirement">
+                        <strong>Broker License Requirements:</strong>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Age 18+</li>
+                            <li>Complete 90 hours pre-license education</li>
+                            <li>Pass licensing exam</li>
+                            <li>Background/fingerprint check</li>
+                        </ul>
+                    </div>
+
+                    <div class="requirement">
+                        <strong>Additional:</strong> For short-term lodging or commercial properties, a PMC (Property Management Company) TPT (Transaction Privilege Tax) license is required
+                    </div>
+
+                    <div class="requirement">
+                        <strong>Ongoing:</strong> Continuing education, trust-account rules, recordkeeping compliance
+                    </div>
+
+                    <div class="info-box" style="margin-top: 15px;">
+                        <strong>Key Takeaway:</strong> If managing properties for others in Arizona, you'll almost certainly need a real estate license. Self-managing your own properties is typically exempt.
+                    </div>
+                </div>
+
+                <div class="state-card">
+                    <h3>⭐ Texas</h3>
+                    
+                    <div class="requirement">
+                        <strong>Licensing Authority:</strong> Texas Real Estate Commission (TREC)
+                    </div>
+
+                    <div class="requirement">
+                        <strong>License Required:</strong> Real estate salesperson or broker license required if showing/leasing for others OR accepting rent deposits on behalf of owners
+                    </div>
+
+                    <div class="requirement">
+                        <strong>Salesperson License Requirements:</strong>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Age 18+</li>
+                            <li>High school diploma or GED</li>
+                            <li>Complete 180 hours pre-licensing education</li>
+                            <li>Pass licensing exam</li>
+                            <li>Obtain sponsorship by a broker</li>
+                        </ul>
+                    </div>
+
+                    <div class="requirement">
+                        <strong>Company Licensing:</strong> Business entity should be licensed as a real estate broker if handling properties for others
+                    </div>
+
+                    <div class="requirement">
+                        <strong>Exemptions:</strong> If you're an employee of the owner and the owner is licensed, you may not need your own license
+                    </div>
+
+                    <div class="info-box" style="margin-top: 15px;">
+                        <strong>Key Takeaway:</strong> Full property management for other owners (leasing, rent collection, maintenance) requires a real estate license. Managing only your own properties or doing maintenance-only work may be exempt.
+                    </div>
+                </div>
+
+                <div class="state-card">
+                    <h3>🏈 Alabama</h3>
+                    
+                    <div class="requirement">
+                        <strong>Licensing Authority:</strong> Alabama Real Estate Commission (AREC)
+                    </div>
+
+                    <div class="requirement">
+                        <strong>License Required:</strong> Any person or company engaged in rental leasing and/or property management services for others must hold a real estate license
+                    </div>
+
+                    <div class="requirement">
+                        <strong>Salesperson License Requirements:</strong>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Age 19+</li>
+                            <li>High school diploma or GED</li>
+                            <li>Complete 60 hours pre-licensing education</li>
+                            <li>Pass licensing exam</li>
+                        </ul>
+                    </div>
+
+                    <div class="requirement">
+                        <strong>Post-Licensing:</strong> Within first year, complete post-license education. Then continuing education required for renewals
+                    </div>
+
+                    <div class="info-box" style="margin-top: 15px;">
+                        <strong>Key Takeaway:</strong> Similar to TX & AZ - managing other people's properties requires a license. Managing only your own properties typically does not trigger licensing requirements (but verify with local law).
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: #03224C; margin: 50px 0 30px 0; font-size: 2em;">Essential Legal Setup Checklist</h3>
+
+            <div class="interactive-checklist">
+                <div class="checklist-item">
+                    <input type="checkbox" id="check1" onchange="toggleChecked(this)">
+                    <label for="check1">Determine if you'll manage only your properties or third-party properties</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check2" onchange="toggleChecked(this)">
+                    <label for="check2">Complete required pre-licensing education in your state</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check3" onchange="toggleChecked(this)">
+                    <label for="check3">Submit license application, fees, and background check</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check4" onchange="toggleChecked(this)">
+                    <label for="check4">Set up company entity (LLC/Corporation) and register with state</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check5" onchange="toggleChecked(this)">
+                    <label for="check5">Establish trust/escrow account for rent and security deposits</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check6" onchange="toggleChecked(this)">
+                    <label for="check6">Obtain business insurance (general liability, E&O, workers comp if hiring)</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check7" onchange="toggleChecked(this)">
+                    <label for="check7">Create property management agreement templates with required disclosures</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check8" onchange="toggleChecked(this)">
+                    <label for="check8">Develop lease templates and vendor agreements</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="check9" onchange="toggleChecked(this)">
+                    <label for="check9">Set up continuing education tracking and license renewal reminders</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACTION CHECKLIST SECTION -->
+        <div class="section" id="checklist">
+            <h2>Your Complete Action Checklist</h2>
+            
+            <div class="success-box">
+                <strong>✓ How to Use This Checklist:</strong> Check off items as you complete them. Your progress will help you track your journey from planning to launch!
+            </div>
+
+            <h3 style="color: #03224C; margin: 40px 0 20px 0; font-size: 1.8em;">Phase A: Planning & Setup</h3>
+            
+            <div class="interactive-checklist">
+                <div class="checklist-item">
+                    <input type="checkbox" id="action1" onchange="toggleChecked(this)">
+                    <label for="action1">Define property types and target market</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action2" onchange="toggleChecked(this)">
+                    <label for="action2">Research 3-5 local competitors and their pricing</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action3" onchange="toggleChecked(this)">
+                    <label for="action3">Choose business structure (LLC recommended)</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action4" onchange="toggleChecked(this)">
+                    <label for="action4">Register business with state</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action5" onchange="toggleChecked(this)">
+                    <label for="action5">Secure business name, logo, and domain</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action6" onchange="toggleChecked(this)">
+                    <label for="action6">Set up business email and phone</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action7" onchange="toggleChecked(this)">
+                    <label for="action7">Establish bookkeeping/accounting system</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action8" onchange="toggleChecked(this)">
+                    <label for="action8">Obtain required real estate license</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action9" onchange="toggleChecked(this)">
+                    <label for="action9">Create contract templates (management agreements, leases)</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action10" onchange="toggleChecked(this)">
+                    <label for="action10">Secure business insurance coverage</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action11" onchange="toggleChecked(this)">
+                    <label for="action11">Set up trust/escrow accounts</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action12" onchange="toggleChecked(this)">
+                    <label for="action12">Choose and set up property management software</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action13" onchange="toggleChecked(this)">
+                    <label for="action13">Build vendor network (plumbers, electricians, HVAC, etc.)</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action14" onchange="toggleChecked(this)">
+                    <label for="action14">Document standard operating procedures</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action15" onchange="toggleChecked(this)">
+                    <label for="action15">Create marketing plan and website</label>
+                </div>
+            </div>
+
+            <h3 style="color: #DD550C; margin: 40px 0 20px 0; font-size: 1.8em;">Phase B: Go-Live & Ramp-Up</h3>
+            
+            <div class="interactive-checklist">
+                <div class="checklist-item">
+                    <input type="checkbox" id="action16" onchange="toggleChecked(this)">
+                    <label for="action16">Attend local investor and landlord meetups</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action17" onchange="toggleChecked(this)">
+                    <label for="action17">Create launch incentives for first clients</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action18" onchange="toggleChecked(this)">
+                    <label for="action18">Sign first property management agreement</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action19" onchange="toggleChecked(this)">
+                    <label for="action19">Conduct property walkthrough and documentation</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action20" onchange="toggleChecked(this)">
+                    <label for="action20">Set up owner reporting system</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action21" onchange="toggleChecked(this)">
+                    <label for="action21">Implement tenant feedback process</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action22" onchange="toggleChecked(this)">
+                    <label for="action22">Schedule regular property inspections</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action23" onchange="toggleChecked(this)">
+                    <label for="action23">Request testimonials from satisfied clients</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action24" onchange="toggleChecked(this)">
+                    <label for="action24">Review and optimize pricing after initial clients</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action25" onchange="toggleChecked(this)">
+                    <label for="action25">Consider hiring assistance as portfolio grows</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action26" onchange="toggleChecked(this)">
+                    <label for="action26">Monitor KPIs: occupancy, turnover, maintenance costs</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action27" onchange="toggleChecked(this)">
+                    <label for="action27">Stay updated on landlord/tenant laws and regulations</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action28" onchange="toggleChecked(this)">
+                    <label for="action28">Collect and showcase positive reviews</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action29" onchange="toggleChecked(this)">
+                    <label for="action29">Plan expansion strategy (geography, property types, services)</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="action30" onchange="toggleChecked(this)">
+                    <label for="action30">Schedule annual business review and goal setting</label>
+                </div>
+            </div>
+
+            <div class="success-box" style="margin-top: 40px;">
+                <h3>🎯 Key Success Factors:</h3>
+                <ul style="margin-left: 20px; margin-top: 15px; line-height: 1.8;">
+                    <li><strong>Legal Compliance:</strong> Get properly licensed in your state</li>
+                    <li><strong>Client Acquisition:</strong> Deliver exceptional service to your first clients</li>
+                    <li><strong>Operations Excellence:</strong> Maintain smooth vendor relationships and tenant satisfaction</li>
+                    <li><strong>Financial Management:</strong> Price correctly to cover costs and generate profit</li>
+                    <li><strong>Continuous Improvement:</strong> Stay current with laws and market trends</li>
+                </ul>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <h3 style="color: #03224C; font-size: 2em; margin-bottom: 20px;">Ready to Launch Your Property Management Business?</h3>
+                <p style="font-size: 1.2em; margin-bottom: 30px;">Follow this guide step-by-step and you'll be well on your way to building a successful, profitable property management company!</p>
+                <button class="cta-button" onclick="window.print()">📄 Print This Guide</button>
+                <button class="cta-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">⬆️ Back to Top</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Progress Bar
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrolled = window.scrollY;
+            const progress = (scrolled / documentHeight) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        });
+
+        // Navigation
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and sections
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Show corresponding section
+                const sectionId = tab.getAttribute('data-section');
+                document.getElementById(sectionId).classList.add('active');
+                
+                // Scroll to top of section
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            });
+        });
+
+        // Toggle expandable steps
+        function toggleStep(element) {
+            element.classList.toggle('expanded');
+        }
+
+        // Checklist functionality
+        function toggleChecked(checkbox) {
+            const item = checkbox.closest('.checklist-item');
+            if (checkbox.checked) {
+                item.classList.add('checked');
+            } else {
+                item.classList.remove('checked');
+            }
+        }
+
+        // Pricing Calculator
+        function calculateRevenue() {
+            const avgRent = parseFloat(document.getElementById('avgRent').value);
+            const packageType = parseFloat(document.getElementById('packageType').value);
+            const numProperties = parseInt(document.getElementById('numProperties').value);
+            
+            const monthlyPerProperty = avgRent * packageType;
+            const monthlyTotal = monthlyPerProperty * numProperties;
+            const annualTotal = monthlyTotal * 12;
+            
+            document.getElementById('calculatorResult').style.display = 'block';
+            document.getElementById('monthlyRevenue').textContent = '$' + monthlyTotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('annualRevenue').textContent = 'Annual Revenue: $' + annualTotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('perProperty').textContent = 'Per Property: $' + monthlyPerProperty.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + '/month';
+            
+            // Scroll to result
+            document.getElementById('calculatorResult').scrollIntoView({behavior: 'smooth', block: 'nearest'});
+        }
+
+        // Add smooth scroll behavior to all internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({behavior: 'smooth'});
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2OH2 Visual Concepts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #36454F;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .controls {
+            text-align: center;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .controls button {
+            background: #A0522D;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .controls button:hover {
+            background: #8B4513;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(160, 82, 45, 0.3);
+        }
+
+        .controls button.active {
+            background: #36454F;
+        }
+
+        .mockup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .mockup-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .mockup-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+        }
+
+        .mockup-title {
+            color: #36454F;
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Business Card */
+        .business-card {
+            width: 100%;
+            aspect-ratio: 3.5/2;
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .business-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(135deg, #A0522D 0%, #8B4513 100%);
+            opacity: 0.08;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .card-logo {
+            font-size: 2.5em;
+            font-weight: 800;
+            color: #36454F;
+            margin-bottom: 15px;
+        }
+
+        .card-logo .auburn {
+            color: #A0522D;
+        }
+
+        .card-tagline {
+            color: #8B7D6B;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .card-info {
+            color: #36454F;
+            font-size: 0.75em;
+            line-height: 1.6;
+        }
+
+        .card-info strong {
+            font-weight: 700;
+        }
+
+        /* Signage */
+        .signage {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #36454F;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .signage::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(160,82,45,0.2) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+        }
+
+        .signage-logo {
+            font-size: 4em;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .signage-logo .auburn {
+            color: #A0522D;
+        }
+
+        .signage-tagline {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2em;
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Website Header */
+        .website-header {
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .header-logo {
+            font-size: 2em;
+            font-weight: 800;
+            color: #36454F;
+        }
+
+        .header-logo .auburn {
+            color: #A0522D;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .header-nav a {
+            color: #36454F;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+
+        .header-nav a:hover {
+            color: #A0522D;
+        }
+
+        /* Social Media Post */
+        .social-post {
+            width: 100%;
+            aspect-ratio: 1/1;
+            background: linear-gradient(135deg, #A0522D 0%, #8B4513 100%);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-post::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            opacity: 0.3;
+        }
+
+        .social-logo {
+            font-size: 5em;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .social-text {
+            color: white;
+            font-size: 1.3em;
+            font-weight: 600;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            line-height: 1.4;
+        }
+
+        /* Letterhead */
+        .letterhead {
+            width: 100%;
+            aspect-ratio: 8.5/11;
+            background: white;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .letterhead-header {
+            border-bottom: 3px solid #A0522D;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .letterhead-logo {
+            font-size: 2.5em;
+            font-weight: 800;
+            color: #36454F;
+            margin-bottom: 5px;
+        }
+
+        .letterhead-logo .auburn {
+            color: #A0522D;
+        }
+
+        .letterhead-tagline {
+            color: #8B7D6B;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .letterhead-content {
+            color: #36454F;
+            font-size: 0.85em;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .letterhead-footer {
+            position: absolute;
+            bottom: 30px;
+            left: 40px;
+            right: 40px;
+            border-top: 2px solid #e8e8e8;
+            padding-top: 15px;
+            font-size: 0.75em;
+            color: #8B7D6B;
+            text-align: center;
+        }
+
+        /* For Sale Sign */
+        .for-sale-sign {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: white;
+            border-radius: 8px;
+            border: 8px solid #A0522D;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        }
+
+        .sign-logo {
+            font-size: 3.5em;
+            font-weight: 800;
+            color: #36454F;
+            margin-bottom: 20px;
+        }
+
+        .sign-logo .auburn {
+            color: #A0522D;
+        }
+
+        .sign-status {
+            background: #A0522D;
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.8em;
+            font-weight: 800;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        .sign-info {
+            text-align: center;
+            color: #36454F;
+            font-size: 1.1em;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .mockup-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-nav {
+                display: none;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>2OH2 Real Estate - Visual Identity Concepts</h1>
+        
+        <div class="controls">
+            <button class="active" onclick="showConcept('concept1')">Concept 1: Mirrored</button>
+            <button onclick="showConcept('concept2')">Concept 2: House</button>
+            <button onclick="showConcept('concept3')">Concept 3: Infinity</button>
+        </div>
+
+        <div id="concept1" class="mockup-grid">
+            <!-- Business Card -->
+            <div class="mockup-card">
+                <div class="mockup-title">Business Card</div>
+                <div class="business-card">
+                    <div class="card-logo">
+                        <span class="auburn">2</span>OH<span class="auburn">2</span>
+                    </div>
+                    <div class="card-tagline">REAL ESTATE REIMAGINED</div>
+                    <div class="card-info">
+                        <strong>Jane Smith</strong><br>
+                        Licensed Real Estate Agent<br>
+                        jane@2oh2realty.com<br>
+                        (334) 555-0123
+                    </div>
+                </div>
+            </div>
+
+            <!-- Building Signage -->
+            <div class="mockup-card">
+                <div class="mockup-title">Building Signage</div>
+                <div class="signage">
+                    <div class="signage-logo">
+                        <span class="auburn">2</span>OH<span class="auburn">2</span>
+                    </div>
+                    <div class="signage-tagline">Real Estate Reimagined</div>
+                </div>
+            </div>
+
+            <!-- Website Header -->
+            <div class="mockup-card">
+                <div class="mockup-title">Website Header</div>
+                <div class="website-header">
+                    <div class="header-logo">
+                        <span class="auburn">2</span>OH<span class="auburn">2</span>
+                    </div>
+                    <div class="header-nav">
+                        <a href="#">Buy</a>
+                        <a href="#">Sell</a>
+                        <a href="#">About 2%</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="mockup-card">
+                <div class="mockup-title">Social Media Post</div>
+                <div class="social-post">
+                    <div class="social-logo">2OH2</div>
+                    <div class="social-text">
+                        Keep 2% more<br>in YOUR pocket
+                    </div>
+                </div>
+            </div>
+
+            <!-- Letterhead -->
+            <div class="mockup-card">
+                <div class="mockup-title">Letterhead</div>
+                <div class="letterhead">
+                    <div class="letterhead-header">
+                        <div class="letterhead-logo">
+                            <span class="auburn">2</span>OH<span class="auburn">2</span>
+                        </div>
+                        <div class="letterhead-tagline">Real Estate Reimagined</div>
+                    </div>
+                    <div class="letterhead-content">
+                        Dear Homeowner,<br><br>
+                        At 2OH2 Realty, we believe you deserve to keep more of your hard-earned equity. That's why we charge just 2% commission instead of the typical 6%.<br><br>
+                        With our innovative approach and Auburn-based values, we're reimagining real estate for homeowners like you.
+                    </div>
+                    <div class="letterhead-footer">
+                        2OH2 Realty • Auburn, AL • (334) 555-0123 • info@2oh2realty.com
+                    </div>
+                </div>
+            </div>
+
+            <!-- For Sale Sign -->
+            <div class="mockup-card">
+                <div class="mockup-title">For Sale Yard Sign</div>
+                <div class="for-sale-sign">
+                    <div class="sign-logo">
+                        <span class="auburn">2</span>OH<span class="auburn">2</span>
+                    </div>
+                    <div class="sign-status">FOR SALE</div>
+                    <div class="sign-info">
+                        Jane Smith<br>
+                        (334) 555-0123<br>
+                        <strong>Only 2% Commission</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="concept2" class="mockup-grid" style="display: none;">
+            <!-- Business Card - House Concept -->
+            <div class="mockup-card">
+                <div class="mockup-title">Business Card</div>
+                <div class="business-card">
+                    <div class="card-logo">
+                        2<span style="color: #A0522D;">⌂</span>2
+                    </div>
+                    <div class="card-tagline">REAL ESTATE REIMAGINED</div>
+                    <div class="card-info">
+                        <strong>Jane Smith</strong><br>
+                        Licensed Real Estate Agent<br>
+                        jane@2oh2realty.com<br>
+                        (334) 555-0123
+                    </div>
+                </div>
+            </div>
+
+            <!-- Building Signage -->
+            <div class="mockup-card">
+                <div class="mockup-title">Building Signage</div>
+                <div class="signage">
+                    <div class="signage-logo">
+                        2<span class="auburn">⌂</span>2
+                    </div>
+                    <div class="signage-tagline">Real Estate Reimagined</div>
+                </div>
+            </div>
+
+            <!-- Website Header -->
+            <div class="mockup-card">
+                <div class="mockup-title">Website Header</div>
+                <div class="website-header">
+                    <div class="header-logo">
+                        2<span class="auburn">⌂</span>2
+                    </div>
+                    <div class="header-nav">
+                        <a href="#">Buy</a>
+                        <a href="#">Sell</a>
+                        <a href="#">About 2%</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="mockup-card">
+                <div class="mockup-title">Social Media Post</div>
+                <div class="social-post">
+                    <div class="social-logo">2⌂2</div>
+                    <div class="social-text">
+                        Your home.<br>Your equity.<br>Your 2%.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Letterhead -->
+            <div class="mockup-card">
+                <div class="mockup-title">Letterhead</div>
+                <div class="letterhead">
+                    <div class="letterhead-header">
+                        <div class="letterhead-logo">
+                            2<span class="auburn">⌂</span>2
+                        </div>
+                        <div class="letterhead-tagline">Real Estate Reimagined</div>
+                    </div>
+                    <div class="letterhead-content">
+                        Dear Homeowner,<br><br>
+                        At 2OH2 Realty, we believe you deserve to keep more of your hard-earned equity. That's why we charge just 2% commission instead of the typical 6%.<br><br>
+                        With our innovative approach and Auburn-based values, we're reimagining real estate for homeowners like you.
+                    </div>
+                    <div class="letterhead-footer">
+                        2OH2 Realty • Auburn, AL • (334) 555-0123 • info@2oh2realty.com
+                    </div>
+                </div>
+            </div>
+
+            <!-- For Sale Sign -->
+            <div class="mockup-card">
+                <div class="mockup-title">For Sale Yard Sign</div>
+                <div class="for-sale-sign">
+                    <div class="sign-logo">
+                        2<span class="auburn">⌂</span>2
+                    </div>
+                    <div class="sign-status">FOR SALE</div>
+                    <div class="sign-info">
+                        Jane Smith<br>
+                        (334) 555-0123<br>
+                        <strong>Only 2% Commission</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="concept3" class="mockup-grid" style="display: none;">
+            <!-- Business Card - Infinity Concept -->
+            <div class="mockup-card">
+                <div class="mockup-title">Business Card</div>
+                <div class="business-card">
+                    <div class="card-logo">
+                        <span class="auburn">2</span><span style="font-size: 0.8em;">∞</span><span class="auburn">2</span>
+                    </div>
+                    <div class="card-tagline">REAL ESTATE REIMAGINED</div>
+                    <div class="card-info">
+                        <strong>Jane Smith</strong><br>
+                        Licensed Real Estate Agent<br>
+                        jane@2oh2realty.com<br>
+                        (334) 555-0123
+                    </div>
+                </div>
+            </div>
+
+            <!-- Building Signage -->
+            <div class="mockup-card">
+                <div class="mockup-title">Building Signage</div>
+                <div class="signage">
+                    <div class="signage-logo">
+                        <span class="auburn">2</span><span style="font-size: 0.8em;">∞</span><span class="auburn">2</span>
+                    </div>
+                    <div class="signage-tagline">Real Estate Reimagined</div>
+                </div>
+            </div>
+
+            <!-- Website Header -->
+            <div class="mockup-card">
+                <div class="mockup-title">Website Header</div>
+                <div class="website-header">
+                    <div class="header-logo">
+                        <span class="auburn">2</span><span style="font-size: 0.8em;">∞</span><span class="auburn">2</span>
+                    </div>
+                    <div class="header-nav">
+                        <a href="#">Buy</a>
+                        <a href="#">Sell</a>
+                        <a href="#">About 2%</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="mockup-card">
+                <div class="mockup-title">Social Media Post</div>
+                <div class="social-post">
+                    <div class="social-logo">2∞2</div>
+                    <div class="social-text">
+                        Infinite value.<br>Minimal commission.<br>Just 2%.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Letterhead -->
+            <div class="mockup-card">
+                <div class="mockup-title">Letterhead</div>
+                <div class="letterhead">
+                    <div class="letterhead-header">
+                        <div class="letterhead-logo">
+                            <span class="auburn">2</span><span style="font-size: 0.8em;">∞</span><span class="auburn">2</span>
+                        </div>
+                        <div class="letterhead-tagline">Real Estate Reimagined</div>
+                    </div>
+                    <div class="letterhead-content">
+                        Dear Homeowner,<br><br>
+                        At 2OH2 Realty, we believe you deserve to keep more of your hard-earned equity. That's why we charge just 2% commission instead of the typical 6%.<br><br>
+                        With our innovative approach and Auburn-based values, we're reimagining real estate for homeowners like you.
+                    </div>
+                    <div class="letterhead-footer">
+                        2OH2 Realty • Auburn, AL • (334) 555-0123 • info@2oh2realty.com
+                    </div>
+                </div>
+            </div>
+
+            <!-- For Sale Sign -->
+            <div class="mockup-card">
+                <div class="mockup-title">For Sale Yard Sign</div>
+                <div class="for-sale-sign">
+                    <div class="sign-logo">
+                        <span class="auburn">2</span><span style="font-size: 0.8em;">∞</span><span class="auburn">2</span>
+                    </div>
+                    <div class="sign-status">FOR SALE</div>
+                    <div class="sign-info">
+                        Jane Smith<br>
+                        (334) 555-0123<br>
+                        <strong>Only 2% Commission</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showConcept(conceptId) {
+            // Hide all concepts
+            document.querySelectorAll('.mockup-grid').forEach(grid => {
+                grid.style.display = 'none';
+            });
+            
+            // Show selected concept
+            document.getElementById(conceptId).style.display = 'grid';
+            
+            // Update button states
+            document.querySelectorAll('.controls button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

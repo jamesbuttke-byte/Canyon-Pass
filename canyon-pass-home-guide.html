@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canyon Pass Custom Home Guide | Design Review Process</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            background: linear-gradient(135deg, #f5f1e8 0%, #e8dcc8 100%);
+            color: #3a3a3a;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #8b7355 0%, #6b5744 100%);
+            color: #f5f1e8;
+            margin-bottom: 50px;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            font-size: 3.5em;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            font-weight: 300;
+            letter-spacing: 2px;
+            opacity: 0.9;
+        }
+
+        .intro-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            border-left: 5px solid #8b7355;
+        }
+
+        .intro-card h2 {
+            color: #6b5744;
+            font-size: 2em;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .intro-card p {
+            font-size: 1.15em;
+            line-height: 1.8;
+            color: #4a4a4a;
+        }
+
+        .key-info {
+            background: linear-gradient(135deg, #d4c4a8 0%, #c9b896 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .key-info h3 {
+            color: #3a3a3a;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .key-info ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .key-info li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1.1em;
+        }
+
+        .key-info li:before {
+            content: "◆";
+            position: absolute;
+            left: 0;
+            color: #6b5744;
+            font-size: 0.8em;
+        }
+
+        .step-navigation {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 50px 0;
+        }
+
+        .step-nav-btn {
+            background: white;
+            border: 2px solid #8b7355;
+            color: #6b5744;
+            padding: 15px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1em;
+            font-family: 'Cormorant Garamond', serif;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .step-nav-btn:hover {
+            background: #8b7355;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .step-nav-btn.active {
+            background: #6b5744;
+            color: white;
+            border-color: #6b5744;
+        }
+
+        .step-content {
+            display: none;
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .step-header {
+            border-bottom: 3px solid #d4c4a8;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .step-number {
+            color: #8b7355;
+            font-size: 1.2em;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .step-title {
+            color: #3a3a3a;
+            font-size: 2.5em;
+            margin-top: 10px;
+            font-weight: 400;
+        }
+
+        .step-section {
+            margin: 30px 0;
+        }
+
+        .step-section h4 {
+            color: #6b5744;
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .checklist {
+            background: #faf8f3;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .checklist-item {
+            padding: 12px 0;
+            padding-left: 35px;
+            position: relative;
+            font-size: 1.1em;
+            border-bottom: 1px solid #e8dcc8;
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .checklist-item:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #8b7355;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .fee-card {
+            background: linear-gradient(135deg, #6b5744 0%, #5a4936 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+        }
+
+        .fee-card h4 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .fee-amount {
+            font-size: 2.5em;
+            font-weight: 300;
+            margin: 15px 0;
+            letter-spacing: 1px;
+        }
+
+        .fee-details {
+            font-size: 1em;
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        .alert-box {
+            background: #fff3cd;
+            border-left: 5px solid #d4a574;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+        .alert-box strong {
+            color: #856404;
+            font-size: 1.1em;
+        }
+
+        .progress-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .progress-indicator:before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #d4c4a8;
+            z-index: 0;
+        }
+
+        .progress-step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+
+        .progress-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #d4c4a8;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .progress-step.completed .progress-circle {
+            background: #6b5744;
+        }
+
+        .progress-step.active .progress-circle {
+            background: #8b7355;
+            transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(139, 115, 85, 0.5);
+        }
+
+        .progress-label {
+            font-size: 0.9em;
+            color: #6b5744;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e8dcc8;
+        }
+
+        .nav-btn {
+            background: #8b7355;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-family: 'Cormorant Garamond', serif;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-btn:hover {
+            background: #6b5744;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6b5744;
+            font-size: 0.95em;
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .step-content {
+                padding: 30px 20px;
+            }
+
+            .step-title {
+                font-size: 1.8em;
+            }
+
+            .progress-indicator {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .progress-step {
+                flex: 0 0 45%;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Canyon Pass</h1>
+        <div class="subtitle">Custom Home Design Review Process</div>
+    </header>
+
+    <div class="container">
+        <div class="intro-card">
+            <h2>Welcome to Your Design Journey</h2>
+            <p>Building your custom luxury home in Canyon Pass is an exciting journey that begins with understanding our thoughtful design review process. As a distinguished homeowner in this exceptional Dove Mountain community, you'll work directly with the Canyon Pass Architectural Review Committee to ensure your home reflects both your vision and our community's commitment to environmental harmony and architectural excellence.</p>
+            
+            <div class="key-info">
+                <h3>What You Need to Know</h3>
+                <ul>
+                    <li>The Dove Mountain DRC manages conservation at the master-plan level and works with developers, not individual homeowners</li>
+                    <li>You submit your home plans to the Canyon Pass Architectural Review Committee (ARC)</li>
+                    <li>You do not pay separate DRC fees—those are handled at the developer level</li>
+                    <li>Your ARC review covers home placement, architecture, materials, landscaping, and site design</li>
+                    <li>A $10,000 Construction Compliance Deposit is required and will be refunded upon successful project completion</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="progress-indicator" id="progressBar">
+            <div class="progress-step" data-step="1">
+                <div class="progress-circle">1</div>
+                <div class="progress-label">Pre-Design</div>
+            </div>
+            <div class="progress-step" data-step="2">
+                <div class="progress-circle">2</div>
+                <div class="progress-label">Preliminary</div>
+            </div>
+            <div class="progress-step" data-step="3">
+                <div class="progress-circle">3</div>
+                <div class="progress-label">Final Design</div>
+            </div>
+            <div class="progress-step" data-step="4">
+                <div class="progress-circle">4</div>
+                <div class="progress-label">Pre-Construction</div>
+            </div>
+            <div class="progress-step" data-step="5">
+                <div class="progress-circle">5</div>
+                <div class="progress-label">Construction</div>
+            </div>
+            <div class="progress-step" data-step="6">
+                <div class="progress-circle">6</div>
+                <div class="progress-label">Closeout</div>
+            </div>
+        </div>
+
+        <div class="step-navigation">
+            <button class="step-nav-btn active" onclick="showStep(1)">Step 1</button>
+            <button class="step-nav-btn" onclick="showStep(2)">Step 2</button>
+            <button class="step-nav-btn" onclick="showStep(3)">Step 3</button>
+            <button class="step-nav-btn" onclick="showStep(4)">Step 4</button>
+            <button class="step-nav-btn" onclick="showStep(5)">Step 5</button>
+            <button class="step-nav-btn" onclick="showStep(6)">Step 6</button>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="step-content active" data-step="1">
+            <div class="step-header">
+                <div class="step-number">Step One</div>
+                <h2 class="step-title">Pre-Design Check</h2>
+            </div>
+
+            <div class="step-section">
+                <h4>Your Responsibilities</h4>
+                <div class="checklist">
+                    <div class="checklist-item">Confirm your specific lot number, tract designation, and recorded building envelope boundaries</div>
+                    <div class="checklist-item">Review any height restrictions or elevation caps that apply to your particular lot</div>
+                    <div class="checklist-item">Familiarize yourself with the Canyon Pass CC&Rs, Tract Declarations, and Design Guidelines</div>
+                    <div class="checklist-item">Schedule a consultation with the ARC management or architectural consultant to discuss your vision and any questions</div>
+                </div>
+            </div>
+
+            <div class="step-section">
+                <h4>What the ARC Provides</h4>
+                <div class="checklist">
+                    <div class="checklist-item">Access to all governing documents, design guidelines, and your lot-specific requirements</div>
+                    <div class="checklist-item">Guidance on building envelope specifications and any unique restrictions for your property</div>
+                    <div class="checklist-item">Professional consultation to help you understand the review process and requirements</div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <strong>Pro Tip:</strong> This initial phase is crucial for a smooth approval process. Understanding your lot's unique characteristics and restrictions now will save time and prevent costly revisions later.
+            </div>
+
+            <div class="nav-buttons">
+                <button class="nav-btn" disabled>Previous</button>
+                <button class="nav-btn" onclick="nextStep()">Next Step</button>
+            </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-content" data-step="2">
+            <div class="step-header">
+                <div class="step-number">Step Two</div>
+                <h2 class="step-title">Preliminary Design Submittal</h2>
+            </div>
+
+            <div class="step-section">
+                <h4>Required Documentation</h4>
+                <div class="checklist">
+                    <div class="checklist-item">Comprehensive site plan showing your home's footprint positioned within the approved building envelope</div>
+                    <div class="checklist-item">Preliminary floor plans illustrating the layout and spatial flow of your home</div>
+                    <div class="checklist-item">Exterior elevations from all sides, showing architectural character and massing</div>
+                    <div class="checklist-item">Basic grading plan and proposed driveway layout</div>
+                    <div class="checklist-item">Preliminary designs for any major walls, courtyards, gates, or ancillary structures</div>
+                </div>
+            </div>
+
+            <div class="step-section">
+                <h4>ARC Review Process</h4>
+                <p style="font-size: 1.1em; margin-bottom: 20px;">The Architectural Review Committee will carefully evaluate your preliminary submission to ensure alignment with:</p>
+                <div class="checklist">
+                    <div class="checklist-item">Canyon Pass CC&Rs and applicable Tract Declarations</div>
+                    <div class="checklist-item">Height limitations and elevation caps specific to your lot</div>
+                    <div class="checklist-item">Community Design Guidelines and architectural standards</div>
+                    <div class="checklist-item">Site development requirements and environmental considerations</div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <strong>What to Expect:</strong> The ARC will either approve your preliminary design to move forward to final submittal, or provide specific feedback and request revisions to bring your plans into compliance with community standards.
+            </div>
+
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="prevStep()">Previous</button>
+                <button class="nav-btn" onclick="nextStep()">Next Step</button>
+            </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-content" data-step="3">
+            <div class="step-header">
+                <div class="step-number">Step Three</div>
+                <h2 class="step-title">Final Design Submittal</h2>
+            </div>
+
+            <div class="step-section">
+                <h4>Complete Documentation Package</h4>
+                <div class="checklist">
+                    <div class="checklist-item">Full architectural plans with detailed elevations from all perspectives</div>
+                    <div class="checklist-item">Comprehensive grading and drainage plan ensuring proper water management</div>
+                    <div class="checklist-item">Exterior materials and color board showcasing all finishes, textures, and palette selections</div>
+                    <div class="checklist-item">Complete landscape plan including plant species list (emphasizing native and desert-adapted plants), irrigation design, and hardscape elements</div>
+                    <div class="checklist-item">Exterior lighting plan showing fixture locations, styles, and specifications</div>
+                    <div class="checklist-item">Any retaining walls, outdoor living spaces, pools, or water features</div>
+                </div>
+            </div>
+
+            <div class="step-section">
+                <h4>ARC Final Review</h4>
+                <p style="font-size: 1.1em; margin-bottom: 20px;">Upon receiving your complete final submittal, the ARC will conduct a thorough review and:</p>
+                <div class="checklist">
+                    <div class="checklist-item">Issue formal approval with any specific conditions or implementation notes</div>
+                    <div class="checklist-item">Identify any required professional survey work for lots with height control restrictions</div>
+                    <div class="checklist-item">Provide written documentation of all approved specifications and materials</div>
+                    <div class="checklist-item">Outline the next steps for pre-construction requirements</div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <strong>Important:</strong> Final approval is contingent upon your plans meeting all community standards. Any subsequent changes to approved plans that affect exterior appearance, grading, or height will require resubmittal for review.
+            </div>
+
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="prevStep()">Previous</button>
+                <button class="nav-btn" onclick="nextStep()">Next Step</button>
+            </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="step-content" data-step="4">
+            <div class="step-header">
+                <div class="step-number">Step Four</div>
+                <h2 class="step-title">Pre-Construction Requirements</h2>
+            </div>
+
+            <div class="step-section">
+                <h4>Financial Requirements</h4>
+                
+                <div class="fee-card">
+                    <h4>Construction Compliance Deposit</h4>
+                    <div class="fee-amount">$10,000</div>
+                    <div class="fee-details">
+                        <p><strong>Purpose:</strong> Ensures compliance with approved plans and protects common areas during construction</p>
+                        <p><strong>Held In:</strong> FDIC-insured interest-bearing account managed by the Association</p>
+                        <p><strong>Interest:</strong> Accrued interest belongs to the Association and supports Common Area maintenance</p>
+                        <p><strong>Refund:</strong> Full deposit returned upon successful project completion, minus any costs for compliance corrections or damage repairs</p>
+                    </div>
+                </div>
+
+                <div class="checklist">
+                    <div class="checklist-item">Pay applicable ARC review fees according to the current fee schedule</div>
+                    <div class="checklist-item">Submit Construction Compliance Deposit of $10,000</div>
+                </div>
+            </div>
+
+            <div class="step-section">
+                <h4>Documentation Requirements</h4>
+                <div class="checklist">
+                    <div class="checklist-item">Provide complete contractor information and certificates of insurance as required</div>
+                    <div class="checklist-item">Submit construction timeline and project schedule</div>
+                    <div class="checklist-item">For height-controlled lots: Arrange for a licensed surveyor to confirm that planned elevations comply with maximum height restrictions</div>
+                    <div class="checklist-item">Acknowledge receipt of all ARC conditions and requirements</div>
+                </div>
+            </div>
+
+            <div class="step-section">
+                <h4>Authorization to Proceed</h4>
+                <p style="font-size: 1.1em;">Once all fees, deposits, and required documentation are confirmed, the ARC will issue written authorization to begin construction under the approved plans. Construction may not commence without this formal authorization.</p>
+            </div>
+
+            <div class="alert-box">
+                <strong>Critical Reminder:</strong> No construction activities may begin until you receive written authorization from the ARC. Beginning work without approval may result in stop-work orders and potential deposit forfeiture.
+            </div>
+
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="prevStep()">Previous</button>
+                <button class="nav-btn" onclick="nextStep()">Next Step</button>
+            </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="step-content" data-step="5">
+            <div class="step-header">
+                <div class="step-number">Step Five</div>
+                <h2 class="step-title">Construction & Inspections</h2>
+            </div>
+
+            <div class="step-section">
+                <h4>Your Construction Responsibilities</h4>
+                <div class="checklist">
+                    <div class="checklist-item">Build strictly in accordance with all ARC-approved plans and specifications</div>
+                    <div class="checklist-item">Submit any design changes affecting exterior appearance, site grading, or building height for ARC review and approval before implementation</div>
+                    <div class="checklist-item">Protect neighboring properties, common areas, and natural washes from construction damage or debris</div>
+                    <div class="checklist-item">Maintain a clean and organized construction site that reflects the character of Canyon Pass</div>
+                    <div class="checklist-item">Ensure all contractors and subcontractors understand and comply with community standards</div>
+                </div>
+            </div>
+
+            <div class="step-section">
+                <h4>ARC Oversight & Inspections</h4>
+                <p style="font-size: 1.1em; margin-bottom: 20px;">During the construction phase, the ARC and Association may:</p>
+                <div class="checklist">
+                    <div class="checklist-item">Conduct periodic site visits to verify compliance with approved plans</div>
+                    <div class="checklist-item">Review construction progress and address any concerns promptly</div>
+                    <div class="checklist-item">For height-controlled lots: Require interim or final elevation surveys to certify compliance with maximum height restrictions</div>
+                    <div class="checklist-item">Document any deviations from approved plans and request immediate correction</div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <strong>Modification Protocol:</strong> Any changes to approved plans—no matter how minor—that affect the exterior appearance, grading, drainage, or structural height must be submitted to the ARC for written approval before proceeding. Unapproved changes may result in required removal or modification at your expense.
+            </div>
+
+            <div class="step-section">
+                <h4>Communication During Construction</h4>
+                <p style="font-size: 1.1em;">Maintain open communication with the ARC throughout construction. Early notification of any potential issues or needed modifications will facilitate smoother resolution and help ensure your project stays on schedule.</p>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="prevStep()">Previous</button>
+                <button class="nav-btn" onclick="nextStep()">Next Step</button>
+            </div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="step-content" data-step="6">
+            <div class="step-header">
+                <div class="step-number">Step Six</div>
+                <h2 class="step-title">Project Closeout & Deposit Refund</h2>
+            </div>
+
+            <div class="step-section">
+                <h4>Final Inspection Process</h4>
+                <div class="checklist">
+                    <div class="checklist-item">Request a final inspection from the ARC upon substantial completion of your home</div>
+                    <div class="checklist-item">For height-controlled lots: Provide final elevation survey from a licensed surveyor certifying compliance with maximum height limits</div>
+                    <div class="checklist-item">Ensure all landscaping, irrigation, and exterior lighting are installed per approved plans</div>
+                    <div class="checklist-item">Confirm that common areas, neighboring properties, and natural features are undamaged and restored if disturbed</div>
+                    <div class="checklist-item">Remove all construction debris, equipment, and temporary structures from the site</div>
+                </div>
+            </div>
+
+            <div class="step-section">
+                <h4>ARC Final Verification</h4>
+                <p style="font-size: 1.1em; margin-bottom: 20px;">The Architectural Review Committee will conduct a comprehensive final inspection to verify:</p>
+                <div class="checklist">
+                    <div class="checklist-item">Construction matches all approved architectural plans, elevations, and specifications</div>
+                    <div class="checklist-item">Exterior materials, colors, and finishes are as approved</div>
+                    <div class="checklist-item">Landscaping and hardscaping comply with approved designs</div>
+                    <div class="checklist-item">No damage to common areas, shared infrastructure, or neighboring properties</div>
+                    <div class="checklist-item">Site cleanup is complete and the property presents in accordance with community standards</div>
+                </div>
+            </div>
+
+            <div class="step-section">
+                <h4>Construction Compliance Deposit Resolution</h4>
+                
+                <div class="fee-card">
+                    <h4>Deposit Refund Process</h4>
+                    <div class="fee-amount">$10,000</div>
+                    <div class="fee-details">
+                        <p><strong>Full Compliance:</strong> If your project fully complies with all approved plans and no repairs to common areas are needed, your entire $10,000 deposit will be refunded.</p>
+                        <p><strong>Corrections Required:</strong> If the Association incurred costs to correct violations or repair damage to common areas, those documented expenses will be deducted from your deposit, with the balance refunded to you.</p>
+                        <p><strong>Interest:</strong> All interest earned on your deposit during the construction period is retained by the Association and allocated to Common Area maintenance and improvements.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <strong>Congratulations!</strong> Upon successful completion and final approval, you'll have created a custom luxury home that enhances the distinctive character of Canyon Pass while reflecting your personal vision. Welcome home to Dove Mountain.
+            </div>
+
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="prevStep()">Previous</button>
+                <button class="nav-btn" disabled>Complete</button>
+            </div>
+        </div>
+
+        <footer>
+            <p>Canyon Pass at Dove Mountain | A Distinguished Custom Home Community</p>
+            <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">This guide is for informational purposes. Please refer to official CC&Rs, Tract Declarations, and Design Guidelines for complete requirements.</p>
+        </footer>
+    </div>
+
+    <script>
+        let currentStep = 1;
+
+        function showStep(stepNumber) {
+            // Hide all steps
+            document.querySelectorAll('.step-content').forEach(step => {
+                step.classList.remove('active');
+            });
+
+            // Show selected step
+            document.querySelector(`.step-content[data-step="${stepNumber}"]`).classList.add('active');
+
+            // Update navigation buttons
+            document.querySelectorAll('.step-nav-btn').forEach((btn, index) => {
+                btn.classList.remove('active');
+                if (index + 1 === stepNumber) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Update progress bar
+            updateProgressBar(stepNumber);
+
+            // Update current step tracker
+            currentStep = stepNumber;
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateProgressBar(stepNumber) {
+            document.querySelectorAll('.progress-step').forEach((step, index) => {
+                const stepNum = index + 1;
+                step.classList.remove('active', 'completed');
+                
+                if (stepNum < stepNumber) {
+                    step.classList.add('completed');
+                } else if (stepNum === stepNumber) {
+                    step.classList.add('active');
+                }
+            });
+        }
+
+        function nextStep() {
+            if (currentStep < 6) {
+                showStep(currentStep + 1);
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                showStep(currentStep - 1);
+            }
+        }
+
+        // Initialize
+        updateProgressBar(1);
+    </script>
+</body>
+</html>
